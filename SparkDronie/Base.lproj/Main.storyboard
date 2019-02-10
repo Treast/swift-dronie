@@ -1,24 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Connection View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ConnectionViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="f3c-Ba-OxM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spark is not connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZE7-UR-Ptn">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1h-Ry-sQr">
+                                        <rect key="frame" x="0.0" y="222.5" width="375" height="222"/>
+                                        <state key="normal" title="Connect"/>
+                                        <connections>
+                                            <action selector="connect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hqd-qe-JdR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K59-vj-hy7">
+                                        <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
+                                        <state key="normal" title="Next"/>
+                                        <connections>
+                                            <segue destination="Pr1-Kt-adh" kind="show" id="lLk-Pn-yeK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="f3c-Ba-OxM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Vyu-ys-WwB"/>
+                            <constraint firstItem="f3c-Ba-OxM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fZ7-ZK-1Tt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="f3c-Ba-OxM" secondAttribute="bottom" id="h35-Yb-Ce1"/>
+                            <constraint firstAttribute="trailing" secondItem="f3c-Ba-OxM" secondAttribute="trailing" id="oVC-NH-xzf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="statusLabel" destination="ZE7-UR-Ptn" id="Bt1-mM-tvA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-190" y="134"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="jSH-6y-L6x">
+            <objects>
+                <viewController id="RBl-Ef-vBG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sUf-Iq-NKa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Idn-Xc-UNX"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="yai-nn-gFG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2d0-uE-zej" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="790" y="972"/>
+        </scene>
+        <!--Testing-->
+        <scene sceneID="O4e-lz-WaK">
+            <objects>
+                <viewController id="jzr-46-tBQ" customClass="TestingViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C68-aO-EuV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-ms-sQC">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8k0-ck-ged">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                        <state key="normal" title="Take off"/>
+                                        <connections>
+                                            <action selector="takeOff:" destination="jzr-46-tBQ" eventType="touchUpInside" id="EKl-dl-mS1"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dAv-be-Qvd">
+                                        <rect key="frame" x="0.0" y="149.5" width="375" height="149.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wbI-Je-vXx">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="149.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed Factor (0.3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsp-hw-MBI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-lR-5fU">
+                                                        <rect key="frame" x="-2" y="20.5" width="191.5" height="79.5"/>
+                                                        <connections>
+                                                            <action selector="speedChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="jUu-hq-gZV"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Duration (10)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60k-1G-lRV">
+                                                        <rect key="frame" x="0.0" y="99" width="187.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-6J-3dB">
+                                                        <rect key="frame" x="-2" y="119.5" width="191.5" height="31"/>
+                                                        <connections>
+                                                            <action selector="durationChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="Yge-a0-zLj"/>
+                                                        </connections>
+                                                    </slider>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-ve-idC">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="149.5"/>
+                                                <state key="normal" title="Run"/>
+                                                <connections>
+                                                    <action selector="run:" destination="jzr-46-tBQ" eventType="touchUpInside" id="JVc-M3-Tvi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Af-9e3">
+                                        <rect key="frame" x="0.0" y="299" width="375" height="149.5"/>
+                                        <state key="normal" title="Land"/>
+                                        <connections>
+                                            <action selector="land:" destination="jzr-46-tBQ" eventType="touchUpInside" id="PbB-Tg-gjc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg3-gH-3C2">
+                                        <rect key="frame" x="0.0" y="448.5" width="375" height="149.5"/>
+                                        <state key="normal" title="STOOOOOOP"/>
+                                        <connections>
+                                            <action selector="stop:" destination="jzr-46-tBQ" eventType="touchUpInside" id="QCj-3q-4oK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JKL-j6-asF" firstAttribute="bottom" secondItem="GUp-ms-sQC" secondAttribute="bottom" id="6wn-rQ-9DM"/>
+                            <constraint firstItem="JKL-j6-asF" firstAttribute="trailing" secondItem="GUp-ms-sQC" secondAttribute="trailing" id="Dab-MP-1PP"/>
+                            <constraint firstItem="GUp-ms-sQC" firstAttribute="leading" secondItem="JKL-j6-asF" secondAttribute="leading" id="MRp-Rv-RdJ"/>
+                            <constraint firstItem="GUp-ms-sQC" firstAttribute="top" secondItem="JKL-j6-asF" secondAttribute="top" id="SmK-vB-xTX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JKL-j6-asF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Testing" id="GUe-si-N1h"/>
+                    <connections>
+                        <outlet property="durationLabel" destination="60k-1G-lRV" id="g8n-j3-2RY"/>
+                        <outlet property="durationSlider" destination="L4w-6J-3dB" id="EMg-BL-VvU"/>
+                        <outlet property="speedLabel" destination="wsp-hw-MBI" id="P4E-Oc-enS"/>
+                        <outlet property="speedSlider" destination="gg0-lR-5fU" id="ZoJ-pl-d5a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tch-Ua-fCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="-338"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="dME-JM-Ib6">
+            <objects>
+                <tabBarController id="Pr1-Kt-adh" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fvc-jz-ShZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="jzr-46-tBQ" kind="relationship" relationship="viewControllers" id="BUb-pw-kJY"/>
+                        <segue destination="RBl-Ef-vBG" kind="relationship" relationship="viewControllers" id="fbn-wj-wUs"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qSy-xD-HQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="134"/>
         </scene>
     </scenes>
 </document>
