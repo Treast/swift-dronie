@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26083DEF2211DA8300F182E0 /* DroneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26083DEE2211DA8300F182E0 /* DroneEvent.swift */; };
+		26083DF12211DBB000F182E0 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26083DF02211DBB000F182E0 /* ExperienceViewController.swift */; };
 		26581B65221189AB006F03CA /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26581B64221189AB006F03CA /* SocketIOManager.swift */; };
 		26732D1522101BB200931D41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D1422101BB200931D41 /* AppDelegate.swift */; };
 		26732D1722101BB200931D41 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D1622101BB200931D41 /* ConnectionViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26083DEE2211DA8300F182E0 /* DroneEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneEvent.swift; sourceTree = "<group>"; };
+		26083DF02211DBB000F182E0 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		26581B64221189AB006F03CA /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		26732D1122101BB200931D41 /* SparkDronie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkDronie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26732D1422101BB200931D41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 				268BFA4D22101EA900C98CC3 /* Parcours */,
 				26732D1422101BB200931D41 /* AppDelegate.swift */,
 				26732D1622101BB200931D41 /* ConnectionViewController.swift */,
+				26083DF02211DBB000F182E0 /* ExperienceViewController.swift */,
 				26732D2622101DD000931D41 /* TestingViewController.swift */,
 				26732D1822101BB200931D41 /* Main.storyboard */,
 				26732D1B22101BB400931D41 /* Assets.xcassets */,
@@ -143,6 +148,7 @@
 				26732D3222101E2F00931D41 /* GimbalDirection.swift */,
 				26732D3322101E2F00931D41 /* Action.swift */,
 				268BFA5022101F1600C98CC3 /* Parcours.swift */,
+				26083DEE2211DA8300F182E0 /* DroneEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +318,8 @@
 				26732D2722101DD000931D41 /* TestingViewController.swift in Sources */,
 				26732D1722101BB200931D41 /* ConnectionViewController.swift in Sources */,
 				26732D3722101E2F00931D41 /* ProductCommunicationManager.swift in Sources */,
+				26083DF12211DBB000F182E0 /* ExperienceViewController.swift in Sources */,
+				26083DEF2211DA8300F182E0 /* DroneEvent.swift in Sources */,
 				26732D3522101E2F00931D41 /* CGPath.swift in Sources */,
 				268BFA5322101F6700C98CC3 /* ParcoursManager.swift in Sources */,
 				26732D3422101E2F00931D41 /* CGPoints+Extensions.swift in Sources */,

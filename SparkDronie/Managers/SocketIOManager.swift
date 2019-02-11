@@ -13,7 +13,7 @@ class SocketIOManager {
     static let shared: SocketIOManager = SocketIOManager()
     
     private let manager: SocketManager
-    private let socketURL: String = "http://localhost:8080"
+    private let socketURL: String = "https://dronie.vincentriva.fr"
     private let socket: SocketIOClient
     
     private init() {
@@ -21,8 +21,8 @@ class SocketIOManager {
         self.socket = manager.defaultSocket
     }
     
-    func on(event: String, callback : @escaping (_ data:Any) -> Void) {
-        self.socket.on(event) { (dataArray, ack) in
+    func on(event: DroneEvent, callback : @escaping (_ data:Any) -> Void) {
+        self.socket.on(event.rawValue) { (dataArray, ack) in
             callback(dataArray)
         }
     }
