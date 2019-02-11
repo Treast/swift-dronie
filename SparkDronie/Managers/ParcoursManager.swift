@@ -12,7 +12,8 @@ import DJISDK
 class ParcoursManager {
     var currentParcours: Parcours?
     var currentIndex: Int = 0
-    var currentParcoursDuration: Float = 0
+    var currentParcoursDuration: Float = 0.0
+    var currentParcoursLength: Float = 0.0
     
     static let shared: ParcoursManager = ParcoursManager()
     private init() {}
@@ -34,22 +35,32 @@ class ParcoursManager {
     func setParcours(parcours: Parcours) {
         currentIndex = 0
         currentParcours = parcours
+        var length: Float = 0.0
+        for i in 0...parcours.points.count - 2 {
+            let pointA = parcours.points[i]
+            let pointB = parcours.points[i + 1]
+            let x = pointB.x - pointA.x
+            let y = pointB.y - pointA.y
+            length += sqrt(x * x + y * y)
+        }
+        currentParcoursLength = length
     }
     
     func playParcours(duration: Float, _ callback: (() -> ())? = nil) {
-        guard let parcours = currentParcours else {
+        guard currentParcours != nil else {
             return
         }
         MovementManager.shared.stop()
         
-        currentParcoursDuration = duration / Float(parcours.points.count)
+        currentParcoursDuration = duration
         
         executeParcours(callback)
     }
     
     func executeParcours(_ callback: (() -> ())? = nil) {
-        if let move = self.nextMove() {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration), repeats: false) { (t) in
+        if let distance = self.nextDistance(), let move = self.nextMove() {
+            let timerInterval = currentParcoursDuration * distance / currentParcoursLength;
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
                 // Code exécuté après move.duration seconds
                 self.executeParcours(callback)
                 
@@ -97,5 +108,17 @@ class ParcoursManager {
         
         currentIndex += 1
         return atan2f(deltaY, deltaX)
+    }
+    
+    func nextDistance() -> Float? {
+        guard let parcours = currentParcours else { return nil }
+        guard currentIndex < parcours.points.count - 1 else { return nil }
+        
+        let currentPosition = parcours.points[currentIndex]
+        let nextPosition = parcours.points[currentIndex + 1]
+        
+        let x = nextPosition.x - currentPosition.x
+        let y = nextPosition.y - currentPosition.y
+        return sqrt(x * x + y * y)
     }
 }
