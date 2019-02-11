@@ -72,6 +72,8 @@ class TestingViewController: UIViewController {
     @IBAction func run(_ sender: Any) {
         MovementManager.shared.speedFactor = speedSlider.value
         MovementManager.shared.speedFactorY = speedYSlider.value
-        ParcoursManager.shared.playParcours(duration: durationSlider.value)
+        ParcoursManager.shared.playParcours(duration: durationSlider.value) {
+            MovementManager.shared.standBy()
+        }
     }
 }

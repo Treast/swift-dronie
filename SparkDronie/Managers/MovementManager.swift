@@ -19,6 +19,7 @@ class MovementManager {
     var speedFactorY: Float = 0.0
     var rotationFactor: Float = 0.0
     var startPoint = Point3D(x: 0, y: 0, z: 0, w: 0)
+    var isMoving: Bool = false
     var isTesting = true
     
     func reset() {
@@ -57,7 +58,28 @@ class MovementManager {
         executeAction()
     }
     
+    func standBy() {
+        isMoving = true
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(1.0), repeats: false) { t in
+            if let mySpark = DJISDKManager.product() as? DJIAircraft {
+                mySpark.mobileRemoteController?.leftStickVertical = self.speedFactorY
+            }
+            print("Up")
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(1.0), repeats: false) { t in
+                if let mySpark = DJISDKManager.product() as? DJIAircraft {
+                    mySpark.mobileRemoteController?.leftStickVertical = -1 * self.speedFactorY
+                }
+                
+                if(self.isMoving) {
+                    self.standBy()
+                }
+                print("Down")
+            }
+        }
+    }
+    
     func stop() {
+        isMoving = false
         if isTesting {
             DirectionSequence.shared.content.append(DirectionSequence.ActionType.Stop.rawValue)
         } else {

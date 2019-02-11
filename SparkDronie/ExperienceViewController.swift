@@ -23,17 +23,23 @@ class ExperienceViewController: UIViewController {
         
         SocketIOManager.shared.on(event: .DroneScene1Move1) { _ in
             ParcoursManager.shared.open(file: "parcours2")
-            ParcoursManager.shared.playParcours(duration: 10)
+            ParcoursManager.shared.playParcours(duration: 10) {
+                MovementManager.shared.standBy()
+            }
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move2) { _ in
             ParcoursManager.shared.open(file: "parcours3")
-            ParcoursManager.shared.playParcours(duration: 10)
+            ParcoursManager.shared.playParcours(duration: 10) {
+                MovementManager.shared.standBy()
+            }
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move3) { _ in
             ParcoursManager.shared.open(file: "parcours4")
-            ParcoursManager.shared.playParcours(duration: 10)
+            ParcoursManager.shared.playParcours(duration: 10) {
+                MovementManager.shared.standBy()
+            }
         }
     }
 }

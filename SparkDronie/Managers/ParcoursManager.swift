@@ -36,21 +36,22 @@ class ParcoursManager {
         currentParcours = parcours
     }
     
-    func playParcours(duration: Float) {
+    func playParcours(duration: Float, _ callback: (() -> ())? = nil) {
         guard let parcours = currentParcours else {
             return
         }
+        MovementManager.shared.stop()
         
         currentParcoursDuration = duration / Float(parcours.points.count)
         
-        executeParcours()
+        executeParcours(callback)
     }
     
-    func executeParcours() {
+    func executeParcours(_ callback: (() -> ())? = nil) {
         if let move = self.nextMove() {
             Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration), repeats: false) { (t) in
                 // Code exécuté après move.duration seconds
-                self.executeParcours()
+                self.executeParcours(callback)
                 
                 let xDirection = MovementManager.shared.speedFactor * cos(move)
                 let yDirection = MovementManager.shared.speedFactorY * sin(move)
@@ -67,6 +68,9 @@ class ParcoursManager {
         } else {
             Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration), repeats: false) { (t) in
                self.stop()
+                if let cb = callback {
+                    cb()
+                }
             }
         }
     }
