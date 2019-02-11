@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26581B65221189AB006F03CA /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26581B64221189AB006F03CA /* SocketIOManager.swift */; };
 		26732D1522101BB200931D41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D1422101BB200931D41 /* AppDelegate.swift */; };
 		26732D1722101BB200931D41 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D1622101BB200931D41 /* ConnectionViewController.swift */; };
 		26732D1A22101BB200931D41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26732D1822101BB200931D41 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26581B64221189AB006F03CA /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		26732D1122101BB200931D41 /* SparkDronie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkDronie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26732D1422101BB200931D41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26732D1622101BB200931D41 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				26732D2E22101E2F00931D41 /* GimbalManager.swift */,
 				26732D2F22101E2F00931D41 /* MovementManager.swift */,
 				268BFA5222101F6700C98CC3 /* ParcoursManager.swift */,
+				26581B64221189AB006F03CA /* SocketIOManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -281,12 +284,16 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SparkDronie/Pods-SparkDronie-frameworks.sh",
 				"${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK/DJISDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJISDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -310,6 +317,7 @@
 				26732D3422101E2F00931D41 /* CGPoints+Extensions.swift in Sources */,
 				26732D3822101E2F00931D41 /* GimbalManager.swift in Sources */,
 				26732D3622101E2F00931D41 /* DirectionSequence.swift in Sources */,
+				26581B65221189AB006F03CA /* SocketIOManager.swift in Sources */,
 				26732D3A22101E2F00931D41 /* Movement.swift in Sources */,
 				26732D1522101BB200931D41 /* AppDelegate.swift in Sources */,
 				268BFA5122101F1600C98CC3 /* Parcours.swift in Sources */,
