@@ -30,6 +30,7 @@ class TestingViewController: UIViewController {
     
     @IBAction func speedChange(_ sender: Any) {
         speedLabel.text = "Speed X (\(String(format: "%.2f", speedSlider.value)))"
+        MovementManager.shared.speedFactor = speedSlider.value
     }
     
     @IBAction func durationChange(_ sender: Any) {
@@ -38,6 +39,7 @@ class TestingViewController: UIViewController {
     
     @IBAction func speedYChange(_ sender: Any) {
         speedYLabel.text = "Speed Y (\(String(format: "%.2f", speedYSlider.value)))"
+        MovementManager.shared.speedFactorY = speedYSlider.value
     }
     
     @IBAction func changeParcours(_ sender: Any) {
