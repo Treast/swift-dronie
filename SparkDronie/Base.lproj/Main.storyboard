@@ -85,42 +85,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-ms-sQC">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-ms-sQC">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VWs-HC-0Jk">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                            <segment title="Third"/>
+                                            <segment title="Fourth"/>
+                                            <segment title="Fifth"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="changeParcours:" destination="jzr-46-tBQ" eventType="valueChanged" id="HGI-yi-4WQ"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8k0-ck-ged">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="60.5"/>
                                         <state key="normal" title="Take off"/>
                                         <connections>
                                             <action selector="takeOff:" destination="jzr-46-tBQ" eventType="touchUpInside" id="EKl-dl-mS1"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dAv-be-Qvd">
-                                        <rect key="frame" x="0.0" y="149.5" width="375" height="149.5"/>
+                                        <rect key="frame" x="0.0" y="116.5" width="375" height="361"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wbI-Je-vXx">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="149.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wbI-Je-vXx">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="361"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed Factor (0.3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsp-hw-MBI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed X (0.3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsp-hw-MBI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-lR-5fU">
-                                                        <rect key="frame" x="-2" y="20.5" width="191.5" height="79.5"/>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-lR-5fU">
+                                                        <rect key="frame" x="-2" y="60" width="191.5" height="61.5"/>
                                                         <connections>
                                                             <action selector="speedChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="jUu-hq-gZV"/>
                                                         </connections>
                                                     </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Duration (10)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60k-1G-lRV">
-                                                        <rect key="frame" x="0.0" y="99" width="187.5" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V50-cZ-wKk">
+                                                        <rect key="frame" x="0.0" y="120.5" width="187.5" height="60"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-6J-3dB">
-                                                        <rect key="frame" x="-2" y="119.5" width="191.5" height="31"/>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7Eh-YT-eLi">
+                                                        <rect key="frame" x="-2" y="180.5" width="191.5" height="61"/>
+                                                        <connections>
+                                                            <action selector="speedYChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="x1o-CL-NHb"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration (10)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60k-1G-lRV">
+                                                        <rect key="frame" x="0.0" y="240.5" width="187.5" height="60.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-6J-3dB">
+                                                        <rect key="frame" x="-2" y="301" width="191.5" height="61"/>
                                                         <connections>
                                                             <action selector="durationChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="Yge-a0-zLj"/>
                                                         </connections>
@@ -128,7 +153,8 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-ve-idC">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="149.5"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="361"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-5" maxY="0.0"/>
                                                 <state key="normal" title="Run"/>
                                                 <connections>
                                                     <action selector="run:" destination="jzr-46-tBQ" eventType="touchUpInside" id="JVc-M3-Tvi"/>
@@ -137,14 +163,14 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Af-9e3">
-                                        <rect key="frame" x="0.0" y="299" width="375" height="149.5"/>
+                                        <rect key="frame" x="0.0" y="477.5" width="375" height="60.5"/>
                                         <state key="normal" title="Land"/>
                                         <connections>
                                             <action selector="land:" destination="jzr-46-tBQ" eventType="touchUpInside" id="PbB-Tg-gjc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg3-gH-3C2">
-                                        <rect key="frame" x="0.0" y="448.5" width="375" height="149.5"/>
+                                        <rect key="frame" x="0.0" y="538" width="375" height="60"/>
                                         <state key="normal" title="STOOOOOOP"/>
                                         <connections>
                                             <action selector="stop:" destination="jzr-46-tBQ" eventType="touchUpInside" id="QCj-3q-4oK"/>
@@ -166,8 +192,11 @@
                     <connections>
                         <outlet property="durationLabel" destination="60k-1G-lRV" id="g8n-j3-2RY"/>
                         <outlet property="durationSlider" destination="L4w-6J-3dB" id="EMg-BL-VvU"/>
+                        <outlet property="segmentedControl" destination="VWs-HC-0Jk" id="Eww-Tk-qcL"/>
                         <outlet property="speedLabel" destination="wsp-hw-MBI" id="P4E-Oc-enS"/>
                         <outlet property="speedSlider" destination="gg0-lR-5fU" id="ZoJ-pl-d5a"/>
+                        <outlet property="speedYLabel" destination="V50-cZ-wKk" id="354-ja-Ynj"/>
+                        <outlet property="speedYSlider" destination="7Eh-YT-eLi" id="Bd1-Pf-Uuu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tch-Ua-fCu" userLabel="First Responder" sceneMemberID="firstResponder"/>

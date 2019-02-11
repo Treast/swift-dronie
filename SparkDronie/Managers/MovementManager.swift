@@ -16,6 +16,7 @@ class MovementManager {
     var movements = [Movement]()
     var actions = [Action]()
     var speedFactor: Float = 0.0
+    var speedFactorY: Float = 0.0
     var rotationFactor: Float = 0.0
     var startPoint = Point3D(x: 0, y: 0, z: 0, w: 0)
     var isTesting = false

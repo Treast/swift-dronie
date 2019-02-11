@@ -23,6 +23,7 @@ class ParcoursManager {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
                 
                 let parcours = try JSONDecoder().decode(Parcours.self, from: data)
+                print("Loading file: \(file)")
                 setParcours(parcours: parcours)
             } catch let error {
                 print("Parse error: \(error.localizedDescription)")
@@ -52,7 +53,7 @@ class ParcoursManager {
                 self.executeParcours()
                 
                 let xDirection = MovementManager.shared.speedFactor * cos(move)
-                let yDirection = MovementManager.shared.speedFactor * sin(move)
+                let yDirection = MovementManager.shared.speedFactorY * sin(move)
                 
                 if MovementManager.shared.isTesting {
                     print("Moving angle: Angle: \(move * 180 / Float.pi) X: \(xDirection) Y: \(yDirection)")

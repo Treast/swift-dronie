@@ -7,4 +7,5 @@ target 'SparkDronie' do
 
   # Pods for SparkDronie
   pod 'DJI-SDK-iOS', '~> 4.9'
+  pod 'Socket.IO-Client-Swift', '~> 14.0.0'
 end

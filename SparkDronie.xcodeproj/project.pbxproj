@@ -22,9 +22,14 @@
 		26732D3A22101E2F00931D41 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D3122101E2F00931D41 /* Movement.swift */; };
 		26732D3B22101E2F00931D41 /* GimbalDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D3222101E2F00931D41 /* GimbalDirection.swift */; };
 		26732D3C22101E2F00931D41 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D3322101E2F00931D41 /* Action.swift */; };
-		268BFA4F22101EBE00C98CC3 /* parcours1.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA4E22101EBE00C98CC3 /* parcours1.json */; };
+		268BFA4F22101EBE00C98CC3 /* parcours.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA4E22101EBE00C98CC3 /* parcours.json */; };
 		268BFA5122101F1600C98CC3 /* Parcours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BFA5022101F1600C98CC3 /* Parcours.swift */; };
 		268BFA5322101F6700C98CC3 /* ParcoursManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BFA5222101F6700C98CC3 /* ParcoursManager.swift */; };
+		268BFA59221055CE00C98CC3 /* parcours2.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA54221055CD00C98CC3 /* parcours2.json */; };
+		268BFA5A221055CE00C98CC3 /* parcours5.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA55221055CD00C98CC3 /* parcours5.json */; };
+		268BFA5B221055CE00C98CC3 /* parcours4.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA56221055CD00C98CC3 /* parcours4.json */; };
+		268BFA5C221055CE00C98CC3 /* parcours1.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA57221055CD00C98CC3 /* parcours1.json */; };
+		268BFA5D221055CE00C98CC3 /* parcours3.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA58221055CE00C98CC3 /* parcours3.json */; };
 		549441B603C3EF9725C69DB1 /* Pods_SparkDronie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918C45A981104CBC23A764FB /* Pods_SparkDronie.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,9 +51,14 @@
 		26732D3122101E2F00931D41 /* Movement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		26732D3222101E2F00931D41 /* GimbalDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GimbalDirection.swift; sourceTree = "<group>"; };
 		26732D3322101E2F00931D41 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		268BFA4E22101EBE00C98CC3 /* parcours1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours1.json; sourceTree = "<group>"; };
+		268BFA4E22101EBE00C98CC3 /* parcours.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours.json; sourceTree = "<group>"; };
 		268BFA5022101F1600C98CC3 /* Parcours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parcours.swift; sourceTree = "<group>"; };
 		268BFA5222101F6700C98CC3 /* ParcoursManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParcoursManager.swift; sourceTree = "<group>"; };
+		268BFA54221055CD00C98CC3 /* parcours2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours2.json; sourceTree = "<group>"; };
+		268BFA55221055CD00C98CC3 /* parcours5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours5.json; sourceTree = "<group>"; };
+		268BFA56221055CD00C98CC3 /* parcours4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours4.json; sourceTree = "<group>"; };
+		268BFA57221055CD00C98CC3 /* parcours1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours1.json; sourceTree = "<group>"; };
+		268BFA58221055CE00C98CC3 /* parcours3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours3.json; sourceTree = "<group>"; };
 		918C45A981104CBC23A764FB /* Pods_SparkDronie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SparkDronie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D751C40E1AAEF8A27DDD923C /* Pods-SparkDronie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SparkDronie.debug.xcconfig"; path = "Target Support Files/Pods-SparkDronie/Pods-SparkDronie.debug.xcconfig"; sourceTree = "<group>"; };
 		DF18AF23C2D7536DDD219565 /* Pods-SparkDronie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SparkDronie.release.xcconfig"; path = "Target Support Files/Pods-SparkDronie/Pods-SparkDronie.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,7 +147,12 @@
 		268BFA4D22101EA900C98CC3 /* Parcours */ = {
 			isa = PBXGroup;
 			children = (
-				268BFA4E22101EBE00C98CC3 /* parcours1.json */,
+				268BFA57221055CD00C98CC3 /* parcours1.json */,
+				268BFA54221055CD00C98CC3 /* parcours2.json */,
+				268BFA58221055CE00C98CC3 /* parcours3.json */,
+				268BFA56221055CD00C98CC3 /* parcours4.json */,
+				268BFA55221055CD00C98CC3 /* parcours5.json */,
+				268BFA4E22101EBE00C98CC3 /* parcours.json */,
 			);
 			path = Parcours;
 			sourceTree = "<group>";
@@ -219,9 +234,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				268BFA59221055CE00C98CC3 /* parcours2.json in Resources */,
 				26732D1F22101BB400931D41 /* LaunchScreen.storyboard in Resources */,
+				268BFA5B221055CE00C98CC3 /* parcours4.json in Resources */,
+				268BFA5A221055CE00C98CC3 /* parcours5.json in Resources */,
 				26732D1C22101BB400931D41 /* Assets.xcassets in Resources */,
-				268BFA4F22101EBE00C98CC3 /* parcours1.json in Resources */,
+				268BFA4F22101EBE00C98CC3 /* parcours.json in Resources */,
+				268BFA5D221055CE00C98CC3 /* parcours3.json in Resources */,
+				268BFA5C221055CE00C98CC3 /* parcours1.json in Resources */,
 				26732D1A22101BB200931D41 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

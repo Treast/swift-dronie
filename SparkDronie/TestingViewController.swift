@@ -12,9 +12,12 @@ import UIKit
 class TestingViewController: UIViewController {
     
     @IBOutlet weak var speedSlider: UISlider!
+    @IBOutlet weak var speedYSlider: UISlider!
     @IBOutlet weak var durationSlider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var speedYLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +29,32 @@ class TestingViewController: UIViewController {
     }
     
     @IBAction func speedChange(_ sender: Any) {
-        speedLabel.text = "Slider Factor (\(String(format: "%.2f", speedSlider.value)))"
+        speedLabel.text = "Speed X (\(String(format: "%.2f", speedSlider.value)))"
     }
     
     @IBAction func durationChange(_ sender: Any) {
-        durationLabel.text = "Slider Factor (\(String(format: "%.2f", durationSlider.value)))"
+        durationLabel.text = "Duration (\(String(format: "%.2f", durationSlider.value)))"
+    }
+    
+    @IBAction func speedYChange(_ sender: Any) {
+        speedYLabel.text = "Speed Y (\(String(format: "%.2f", speedYSlider.value)))"
+    }
+    
+    @IBAction func changeParcours(_ sender: Any) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            ParcoursManager.shared.open(file: "parcours1")
+        case 1:
+            ParcoursManager.shared.open(file: "parcours2")
+        case 2:
+            ParcoursManager.shared.open(file: "parcours3")
+        case 3:
+            ParcoursManager.shared.open(file: "parcours4")
+        case 4:
+            ParcoursManager.shared.open(file: "parcours5")
+        default:
+            break
+        }
     }
     
     @IBAction func takeOff(_ sender: Any) {
@@ -47,6 +71,7 @@ class TestingViewController: UIViewController {
     
     @IBAction func run(_ sender: Any) {
         MovementManager.shared.speedFactor = speedSlider.value
+        MovementManager.shared.speedFactorY = speedYSlider.value
         ParcoursManager.shared.playParcours(duration: durationSlider.value)
     }
 }
