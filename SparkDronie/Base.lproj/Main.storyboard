@@ -77,6 +77,65 @@
             </objects>
             <point key="canvasLocation" x="790" y="972"/>
         </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="R0p-zt-Mv4">
+            <objects>
+                <viewController id="nJT-YS-awS" customClass="CameraViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iKq-uS-3O4" userLabel="CameraView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpn-jp-kEy">
+                                <rect key="frame" x="83" y="365" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start Tracking"/>
+                                <connections>
+                                    <action selector="startTracking:" destination="nJT-YS-awS" eventType="touchUpInside" id="2ag-sd-Xcv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbN-63-1Ba">
+                                <rect key="frame" x="234" y="365" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clear:" destination="nJT-YS-awS" eventType="touchUpInside" id="XaK-Si-vfB"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-0M-5jd" userLabel="CameraView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="208"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-Du-0Cc" customClass="TrackingView" customModule="SparkDronie" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="208"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="RvW-7e-aGo" appends="YES" id="lDl-Q8-hjV"/>
+                                    <outletCollection property="gestureRecognizers" destination="XsY-5w-ByB" appends="YES" id="Ert-jX-aWa"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="2tm-5w-Ox4"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="Gjc-0M-5jd" id="f9E-qm-03a"/>
+                        <outlet property="trackingView" destination="8Gn-Du-0Cc" id="OWh-Ti-pgu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8xi-Al-GR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="RvW-7e-aGo">
+                    <connections>
+                        <action selector="handlePan:" destination="nJT-YS-awS" id="2t0-mH-wNh"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="XsY-5w-ByB"/>
+            </objects>
+            <point key="canvasLocation" x="1461.5999999999999" y="971.96401799100454"/>
+        </scene>
         <!--Testing-->
         <scene sceneID="O4e-lz-WaK">
             <objects>
