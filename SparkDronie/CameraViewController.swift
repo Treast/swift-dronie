@@ -19,6 +19,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var objectsToTrack = [TrackedPolyRect]()
     var selectedBounds: TrackedPolyRect?
     
+    var previousCenterPoint: CGPoint?
+    var calibrationCount = 0
+    
     var inputObservations = [VNDetectedObjectObservation]()
     
     lazy var sequenceRequestHandler = VNSequenceRequestHandler()
@@ -50,8 +53,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "MyQueue"))
+        
+        SocketIOManager.shared.connect()
         self.captureSession.addOutput(videoOutput)
         self.captureSession.startRunning()
+    }
+    
+    @IBAction func calibrate(_ sender: Any) {
+        if calibrationCount < 4, let currentCenter = previousCenterPoint {
+            SocketIOManager.shared.emit(event: .DroneCalibration, data: DroneDetection(point: currentCenter).toJson())
+            calibrationCount += 1
+        }
     }
     
     func exifOrientationForDeviceOrientation(_ deviceOrientation: UIDeviceOrientation) -> CGImagePropertyOrientation {
@@ -127,14 +139,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         DispatchQueue.main.async {
             if let first = self.inputObservations.first {
                 self.trackingView.polyRect = TrackedPolyRect(observation: first)
-                //SocketIOManager.shared.emit(eventName: "detect", data: ["x" : first.boundingBox.origin.x,"y" : first.boundingBox.origin.y])
-                print(first.boundingBox.origin.x,first.boundingBox.origin.y)
+                
+                if self.calibrationCount >= 4 {
+                    SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: first.boundingBox.origin).toJson())
+                }
+                
+                self.previousCenterPoint = first.boundingBox.origin
+                
                 //do somethin with the bounding box
                 self.trackingView.setNeedsDisplay()
             }
-            
         }
-        
     }
     
     

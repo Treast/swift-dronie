@@ -17,21 +17,26 @@ class SocketIOManager {
     private let socket: SocketIOClient
     
     private init() {
-        self.manager = SocketManager(socketURL: URL(string: self.socketURL)!, config: [.log(true), .compress])
+        self.manager = SocketManager(socketURL: URL(string: self.socketURL)!, config: [.log(false), .compress])
         self.socket = manager.defaultSocket
     }
     
     func on(event: DroneEvent, callback : @escaping (_ data:Any) -> Void) {
         self.socket.on(event.rawValue) { (dataArray, ack) in
             callback(dataArray)
+            print("Socket received: \(event.rawValue)")
         }
     }
     
-    func emit(event: String, data: Any) {
-        self.socket.emit(event, with: [data])
+    func emit(event: DroneEvent, data: Any) {
+        self.socket.emit(event.rawValue, with: [data])
+        print("Socket emit: \(event.rawValue)")
     }
     
     func connect() {
         self.socket.connect()
+        self.socket.on("connect") { (dataArray, ack) in
+            print("Socket connected")
+        }
     }
 }
