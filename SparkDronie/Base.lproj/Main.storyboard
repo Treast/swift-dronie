@@ -61,7 +61,7 @@
             </objects>
             <point key="canvasLocation" x="-190" y="134"/>
         </scene>
-        <!--Item 2-->
+        <!--Experience-->
         <scene sceneID="jSH-6y-L6x">
             <objects>
                 <viewController id="RBl-Ef-vBG" customClass="ExperienceViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,13 +71,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Idn-Xc-UNX"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="yai-nn-gFG"/>
+                    <tabBarItem key="tabBarItem" title="Experience" id="yai-nn-gFG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d0-uE-zej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="790" y="972"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Camera-->
         <scene sceneID="R0p-zt-Mv4">
             <objects>
                 <viewController id="nJT-YS-awS" customClass="CameraViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,6 +121,7 @@
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="2tm-5w-Ox4"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Camera" id="Km0-cz-eEh"/>
                     <connections>
                         <outlet property="cameraView" destination="Gjc-0M-5jd" id="f9E-qm-03a"/>
                         <outlet property="trackingView" destination="8Gn-Du-0Cc" id="OWh-Ti-pgu"/>
@@ -134,7 +135,7 @@
                 </panGestureRecognizer>
                 <tapGestureRecognizer id="XsY-5w-ByB"/>
             </objects>
-            <point key="canvasLocation" x="1461.5999999999999" y="971.96401799100454"/>
+            <point key="canvasLocation" x="1826" y="616"/>
         </scene>
         <!--Testing-->
         <scene sceneID="O4e-lz-WaK">
@@ -286,6 +287,7 @@
                     <connections>
                         <segue destination="jzr-46-tBQ" kind="relationship" relationship="viewControllers" id="BUb-pw-kJY"/>
                         <segue destination="RBl-Ef-vBG" kind="relationship" relationship="viewControllers" id="fbn-wj-wUs"/>
+                        <segue destination="nJT-YS-awS" kind="relationship" relationship="viewControllers" id="a49-h7-3xa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSy-xD-HQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
