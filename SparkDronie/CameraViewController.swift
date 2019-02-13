@@ -10,14 +10,14 @@ import UIKit
 import Vision
 import AVFoundation
 
-class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var trackingView: TrackingView!
     
     var objectsToTrack = [TrackedPolyRect]()
-    var selectedBounds:TrackedPolyRect?
+    var selectedBounds: TrackedPolyRect?
     
     var inputObservations = [VNDetectedObjectObservation]()
     
@@ -36,10 +36,12 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         return session
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         cameraView?.layer.addSublayer(cameraLayer)
         cameraLayer.frame = cameraView.bounds
         
@@ -50,12 +52,9 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "MyQueue"))
         self.captureSession.addOutput(videoOutput)
         self.captureSession.startRunning()
-        
-        
     }
     
     func exifOrientationForDeviceOrientation(_ deviceOrientation: UIDeviceOrientation) -> CGImagePropertyOrientation {
-        
         switch deviceOrientation {
         case .portraitUpsideDown:
             return .rightMirrored
@@ -84,25 +83,19 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
     }
     
     @IBAction func startTracking(_ sender: Any) {
-        
         if let rect = selectedBounds {
             let inputObservation = VNDetectedObjectObservation(boundingBox: rect.boundingBox)
-            
+
             inputObservations.append(inputObservation)
         }
         
         clear(self)
-        
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        
-        
-        
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        
         
         var trackingRequests = [VNRequest]()
         
@@ -127,9 +120,7 @@ class CameraViewController: UIViewController,AVCaptureVideoDataOutputSampleBuffe
                 continue
             }
             
-            
             inputObservations = []
-            
             inputObservations.append(observation)
         }
         
