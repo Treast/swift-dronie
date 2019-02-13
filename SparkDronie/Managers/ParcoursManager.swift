@@ -58,6 +58,8 @@ class ParcoursManager {
     }
     
     func executeParcours(_ callback: (() -> ())? = nil) {
+        guard let parcours = currentParcours else { return }
+        
         if let distance = self.nextDistance(), let move = self.nextMove() {
             let timerInterval = currentParcoursDuration * distance / currentParcoursLength;
             Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
@@ -77,7 +79,7 @@ class ParcoursManager {
                 }
             }
         } else {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(currentParcours!.points.count)), repeats: false) { (t) in
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(parcours.points.count)), repeats: false) { (t) in
                self.stop()
                 if let cb = callback {
                     cb()

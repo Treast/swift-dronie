@@ -64,6 +64,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             SocketIOManager.shared.emit(event: .DroneCalibration, data: DroneDetection(point: currentCenter).toJson())
             calibrationCount += 1
         }
+        
+        if calibrationCount == 4 {
+            self.registerListenersScene1()
+        }
     }
     
     func exifOrientationForDeviceOrientation(_ deviceOrientation: UIDeviceOrientation) -> CGImagePropertyOrientation {
@@ -102,6 +106,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         clear(self)
+        setupTimedDetect()
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -140,10 +145,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             if let first = self.inputObservations.first {
                 self.trackingView.polyRect = TrackedPolyRect(observation: first)
                 
-                if self.calibrationCount >= 4 {
-                    SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: first.boundingBox.origin).toJson())
-                }
-                
                 self.previousCenterPoint = first.boundingBox.origin
                 
                 //do somethin with the bounding box
@@ -174,4 +175,39 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
     }
     
+    func setupTimedDetect() {
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(0.5), repeats: true) { t in
+            if self.calibrationCount >= 4, let point = self.previousCenterPoint {
+                SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: point).toJson())
+            }
+        }
+    }
+    
+    func registerListenersScene1() {
+        SocketIOManager.shared.on(event: .DroneScene1TakeOff) { _ in
+            MovementManager.shared.takeOff()
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene1Move1) { _ in
+            ParcoursManager.shared.open(file: "parcours2")
+            ParcoursManager.shared.playParcours(duration: 4) {
+                MovementManager.shared.standBy()
+            }
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene1Move2) { _ in
+            ParcoursManager.shared.open(file: "parcours3")
+            ParcoursManager.shared.playParcours(duration: 4) {
+                MovementManager.shared.standBy()
+            }
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene1Move3) { _ in
+            ParcoursManager.shared.open(file: "parcours4")
+            ParcoursManager.shared.playParcours(duration: 4) {
+                MovementManager.shared.standBy()
+            }
+        }
+        print("Finish register")
+    }
 }
