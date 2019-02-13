@@ -23,6 +23,10 @@ class TestingViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func standBy(_ sender: Any) {
+        MovementManager.shared.standBy()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ParcoursManager.shared.open(file: "parcours1")
@@ -75,7 +79,7 @@ class TestingViewController: UIViewController {
         MovementManager.shared.speedFactor = speedSlider.value
         MovementManager.shared.speedFactorY = speedYSlider.value
         ParcoursManager.shared.playParcours(duration: durationSlider.value) {
-            MovementManager.shared.standBy()
+            MovementManager.shared.stop()
         }
     }
 }

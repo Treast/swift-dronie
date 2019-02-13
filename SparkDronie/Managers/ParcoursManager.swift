@@ -77,7 +77,7 @@ class ParcoursManager {
                 }
             }
         } else {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration), repeats: false) { (t) in
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(currentParcours!.points.count)), repeats: false) { (t) in
                self.stop()
                 if let cb = callback {
                     cb()

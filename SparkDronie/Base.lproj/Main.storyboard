@@ -152,14 +152,26 @@
                                                     </slider>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-ve-idC">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="O1O-ag-xTQ">
                                                 <rect key="frame" x="187.5" y="0.0" width="187.5" height="361"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                <state key="normal" title="Run"/>
-                                                <connections>
-                                                    <action selector="run:" destination="jzr-46-tBQ" eventType="touchUpInside" id="JVc-M3-Tvi"/>
-                                                </connections>
-                                            </button>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-ve-idC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="180.5"/>
+                                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-5" maxY="0.0"/>
+                                                        <state key="normal" title="Run"/>
+                                                        <connections>
+                                                            <action selector="run:" destination="jzr-46-tBQ" eventType="touchUpInside" id="JVc-M3-Tvi"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTc-4Y-rxG">
+                                                        <rect key="frame" x="0.0" y="180.5" width="187.5" height="180.5"/>
+                                                        <state key="normal" title="StandBy"/>
+                                                        <connections>
+                                                            <action selector="standBy:" destination="jzr-46-tBQ" eventType="touchUpInside" id="rbm-Jq-LMS"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Af-9e3">

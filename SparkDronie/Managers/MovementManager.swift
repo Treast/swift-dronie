@@ -20,7 +20,7 @@ class MovementManager {
     var rotationFactor: Float = 0.0
     var startPoint = Point3D(x: 0, y: 0, z: 0, w: 0)
     var isMoving: Bool = false
-    var isTesting = true
+    var isTesting = false
     
     func reset() {
         movements = []
@@ -59,22 +59,35 @@ class MovementManager {
     }
     
     func standBy() {
+        let standByInterval = 1.5
+        let speedStandBy: Float = 0.10
         isMoving = true
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(1.0), repeats: false) { t in
+        var count = 0
+        print("Standby")
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(standByInterval), repeats: true) { t in
             if let mySpark = DJISDKManager.product() as? DJIAircraft {
-                mySpark.mobileRemoteController?.leftStickVertical = self.speedFactorY
-            }
-            print("Up")
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(1.0), repeats: false) { t in
-                if let mySpark = DJISDKManager.product() as? DJIAircraft {
-                    mySpark.mobileRemoteController?.leftStickVertical = -1 * self.speedFactorY
+                print("GetSpark")
+                if self.isMoving {
+                    print("IsMoving")
+                    if count % 2 == 0 {
+                        mySpark.mobileRemoteController?.leftStickVertical = speedStandBy
+                        print("Up")
+                    } else {
+                        mySpark.mobileRemoteController?.leftStickVertical = -2 * speedStandBy
+                        print("Down")
+                    }
+                    mySpark.mobileRemoteController?.leftStickHorizontal = 0.0
+                    mySpark.mobileRemoteController?.rightStickHorizontal = 0.0
+                    mySpark.mobileRemoteController?.rightStickVertical = 0.0
                 }
-                
-                if(self.isMoving) {
-                    self.standBy()
-                }
-                print("Down")
             }
+            
+            if(!self.isMoving) {
+                print("Invalidate")
+                t.invalidate()
+            }
+            
+            count += 1
         }
     }
     
