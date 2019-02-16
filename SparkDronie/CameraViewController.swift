@@ -15,6 +15,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var trackingView: TrackingView!
+    @IBOutlet weak var trackingBarItem: UIBarButtonItem!
     
     var objectsToTrack = [TrackedPolyRect]()
     var selectedBounds: TrackedPolyRect?
@@ -67,10 +68,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if calibrationCount < 4, let currentCenter = previousCenterPoint {
             SocketIOManager.shared.emit(event: .DroneCalibration, data: DroneDetection(point: currentCenter).toJson())
             calibrationCount += 1
-        }
-        
-        if calibrationCount == 4 {
-            self.registerListenersScene1()
         }
     }
     

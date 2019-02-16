@@ -61,23 +61,7 @@
             </objects>
             <point key="canvasLocation" x="-190" y="134"/>
         </scene>
-        <!--Experience-->
-        <scene sceneID="jSH-6y-L6x">
-            <objects>
-                <viewController id="RBl-Ef-vBG" customClass="ExperienceViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sUf-Iq-NKa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Idn-Xc-UNX"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Experience" id="yai-nn-gFG"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2d0-uE-zej" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="790" y="972"/>
-        </scene>
-        <!--Camera-->
+        <!--Player-->
         <scene sceneID="R0p-zt-Mv4">
             <objects>
                 <viewController id="nJT-YS-awS" customClass="CameraViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,30 +69,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpn-jp-kEy">
-                                <rect key="frame" x="83" y="365" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start Tracking"/>
-                                <connections>
-                                    <action selector="startTracking:" destination="nJT-YS-awS" eventType="touchUpInside" id="2ag-sd-Xcv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbN-63-1Ba">
-                                <rect key="frame" x="234" y="365" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Clear"/>
-                                <connections>
-                                    <action selector="clear:" destination="nJT-YS-awS" eventType="touchUpInside" id="XaK-Si-vfB"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-0M-5jd" userLabel="CameraView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="208"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-0M-5jd" userLabel="CameraView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-Du-0Cc" customClass="TrackingView" customModule="SparkDronie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="208"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-Du-0Cc" customClass="TrackingView" customModule="SparkDronie" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -116,22 +82,43 @@
                                     <outletCollection property="gestureRecognizers" destination="XsY-5w-ByB" appends="YES" id="Ert-jX-aWa"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-ye-fal">
-                                <rect key="frame" x="156" y="403" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Calibrate"/>
-                                <connections>
-                                    <action selector="calibrate:" destination="nJT-YS-awS" eventType="touchUpInside" id="SU9-MU-QHs"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="2tm-5w-Ox4" firstAttribute="bottom" secondItem="Gjc-0M-5jd" secondAttribute="bottom" id="FGn-e4-AJh"/>
+                            <constraint firstItem="8Gn-Du-0Cc" firstAttribute="trailing" secondItem="2tm-5w-Ox4" secondAttribute="trailing" id="JCh-jA-aAT"/>
+                            <constraint firstItem="Gjc-0M-5jd" firstAttribute="trailing" secondItem="2tm-5w-Ox4" secondAttribute="trailing" id="JTP-pD-UQb"/>
+                            <constraint firstItem="Gjc-0M-5jd" firstAttribute="leading" secondItem="2tm-5w-Ox4" secondAttribute="leading" id="OtX-Mh-w7b"/>
+                            <constraint firstItem="2tm-5w-Ox4" firstAttribute="bottom" secondItem="8Gn-Du-0Cc" secondAttribute="bottom" id="Vcu-ie-btw"/>
+                            <constraint firstItem="Gjc-0M-5jd" firstAttribute="top" secondItem="iKq-uS-3O4" secondAttribute="top" id="dd9-My-fNZ"/>
+                            <constraint firstItem="8Gn-Du-0Cc" firstAttribute="leading" secondItem="2tm-5w-Ox4" secondAttribute="leading" id="txR-rb-q10"/>
+                            <constraint firstItem="8Gn-Du-0Cc" firstAttribute="top" secondItem="2tm-5w-Ox4" secondAttribute="top" id="xbb-2e-9k3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2tm-5w-Ox4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Camera" id="Km0-cz-eEh"/>
+                    <navigationItem key="navigationItem" title="Player" id="WQt-5A-wmD">
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="camera" id="imC-oI-ltc">
+                                <connections>
+                                    <action selector="calibrate:" destination="nJT-YS-awS" id="b2u-E0-Dbe"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="bYl-ig-Tum">
+                                <connections>
+                                    <action selector="clear:" destination="nJT-YS-awS" id="l6b-4N-eIk"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="WdR-Pl-DP0">
+                            <connections>
+                                <action selector="startTracking:" destination="nJT-YS-awS" id="bvZ-B5-YzT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Gjc-0M-5jd" id="f9E-qm-03a"/>
+                        <outlet property="trackingBarItem" destination="WdR-Pl-DP0" id="qt3-Fz-y1p"/>
                         <outlet property="trackingView" destination="8Gn-Du-0Cc" id="OWh-Ti-pgu"/>
                     </connections>
                 </viewController>
@@ -143,7 +130,7 @@
                 </panGestureRecognizer>
                 <tapGestureRecognizer id="XsY-5w-ByB"/>
             </objects>
-            <point key="canvasLocation" x="1826" y="616"/>
+            <point key="canvasLocation" x="2764" y="615.74212893553226"/>
         </scene>
         <!--Testing-->
         <scene sceneID="O4e-lz-WaK">
@@ -294,13 +281,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="jzr-46-tBQ" kind="relationship" relationship="viewControllers" id="BUb-pw-kJY"/>
-                        <segue destination="RBl-Ef-vBG" kind="relationship" relationship="viewControllers" id="fbn-wj-wUs"/>
-                        <segue destination="nJT-YS-awS" kind="relationship" relationship="viewControllers" id="a49-h7-3xa"/>
+                        <segue destination="Yq6-hd-IOs" kind="relationship" relationship="viewControllers" id="a49-h7-3xa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSy-xD-HQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="791" y="134"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="o9O-jj-J0Y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yq6-hd-IOs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Camera" id="Km0-cz-eEh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qeu-yv-tNs">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nJT-YS-awS" kind="relationship" relationship="rootViewController" id="usI-9X-SGq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AKU-Vc-0Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1824.8" y="615.74212893553226"/>
         </scene>
     </scenes>
 </document>
