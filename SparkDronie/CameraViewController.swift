@@ -23,6 +23,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var previousCenterPoint: CGPoint?
     var calibrationCount = 0
     
+    var isTracking: Bool = false
+    var timerDetect: Timer? = nil;
+    
     var inputObservations = [VNDetectedObjectObservation]()
     
     lazy var sequenceRequestHandler = VNSequenceRequestHandler()
@@ -100,18 +103,35 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     @IBAction func startTracking(_ sender: Any) {
-        if let rect = selectedBounds {
-            let inputObservation = VNDetectedObjectObservation(boundingBox: rect.boundingBox)
-
-            inputObservations.append(inputObservation)
+        if isTracking {
+            if let t = timerDetect {
+                t.invalidate()
+            }
+            isTracking = false
+            self.trackingView.polyRect = nil
+            self.selectedBounds = nil
+            trackingView.rubberbandingStart = CGPoint.zero
+            trackingView.rubberbandingVector = CGPoint.zero
+            self.trackingView.setNeedsDisplay()
+        } else {
+            isTracking = true
+            if let rect = selectedBounds {
+                let inputObservation = VNDetectedObjectObservation(boundingBox: rect.boundingBox)
+                
+                inputObservations.append(inputObservation)
+            }
+            
+            clear(self)
+            setupTimedDetect()
         }
-        
-        clear(self)
-        setupTimedDetect()
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        guard isTracking else {
             return
         }
         
@@ -177,7 +197,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func setupTimedDetect() {
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(0.2), repeats: true) { t in
+        timerDetect = Timer.scheduledTimer(withTimeInterval: TimeInterval(0.2), repeats: true) { t in
             if self.calibrationCount >= 4, let point = self.previousCenterPoint {
                 SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: point).toJson())
             }
