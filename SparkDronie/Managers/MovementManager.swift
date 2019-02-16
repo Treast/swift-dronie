@@ -73,7 +73,7 @@ class MovementManager {
                         mySpark.mobileRemoteController?.leftStickVertical = speedStandBy
                         print("Up")
                     } else {
-                        mySpark.mobileRemoteController?.leftStickVertical = -2 * speedStandBy
+                        mySpark.mobileRemoteController?.leftStickVertical = -1.8 * speedStandBy
                         print("Down")
                     }
                     mySpark.mobileRemoteController?.leftStickHorizontal = 0.0
@@ -113,6 +113,22 @@ class MovementManager {
             if let mySpark = DJISDKManager.product() as? DJIAircraft {
                 if let flightController = mySpark.flightController {
                     flightController.startTakeoff(completion: { (err) in
+                        print(err.debugDescription)
+                    })
+                }
+            }
+        }
+    }
+    
+    func takeOffWithCompletion(callback: @escaping () -> ()) {
+        if isTesting {
+            DirectionSequence.shared.content.append(DirectionSequence.ActionType.TakeOff.rawValue)
+            callback()
+        } else {
+            if let mySpark = DJISDKManager.product() as? DJIAircraft {
+                if let flightController = mySpark.flightController {
+                    flightController.startTakeoff(completion: { (err) in
+                        callback()
                         print(err.debugDescription)
                     })
                 }

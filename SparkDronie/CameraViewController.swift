@@ -47,14 +47,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         super.viewDidLoad()
         cameraView?.layer.addSublayer(cameraLayer)
         cameraLayer.frame = cameraView.bounds
+        cameraLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         trackingView.imageAreaRect = cameraView.bounds
+        print(cameraLayer.frame.size)
+        print(cameraView.frame.size)
         
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "MyQueue"))
         
         SocketIOManager.shared.connect()
+        self.registerListenersScene1()
         self.captureSession.addOutput(videoOutput)
         self.captureSession.startRunning()
     }
@@ -118,7 +122,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         for inputObservation in inputObservations {
             let request = VNTrackObjectRequest(detectedObjectObservation: inputObservation)
-            request.trackingLevel = .fast
+            request.trackingLevel = .accurate
             
             trackingRequests.append(request)
         }
@@ -176,7 +180,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func setupTimedDetect() {
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(0.5), repeats: true) { t in
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(0.2), repeats: true) { t in
             if self.calibrationCount >= 4, let point = self.previousCenterPoint {
                 SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: point).toJson())
             }
@@ -185,12 +189,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     func registerListenersScene1() {
         SocketIOManager.shared.on(event: .DroneScene1TakeOff) { _ in
-            MovementManager.shared.takeOff()
+            MovementManager.shared.takeOffWithCompletion {
+                SocketIOManager.shared.emit(event: .ClientTakeOff, data: [])
+            }
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move1) { _ in
             ParcoursManager.shared.open(file: "parcours2")
-            ParcoursManager.shared.playParcours(duration: 4) {
+            ParcoursManager.shared.playParcours(duration: 10) {
                 MovementManager.shared.standBy()
             }
         }

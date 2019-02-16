@@ -25,5 +25,11 @@ enum DroneEvent: String {
     DroneScene3Button1 = "DRONE:SCENE3:BUTTON1",
     DroneScene3Land = "DRONE:SCENE3:LAND",
     DroneCalibration = "DRONE:CALIBRATION",
-    DroneDetect = "DRONE:DETECT"
+    DroneDetect = "DRONE:DETECT",
+    ClientTakeOff = "CLIENT:SCENE1:TAKEOFF",
+    ClientScene1Move1 = "CLIENT:SCENE1:MOVE1",
+    ClientScene1Move2 = "CLIENT:SCENE1:MOVE2",
+    ClientScene2Move1 = "CLIENT:SCENE2:MOVE1",
+    ClientScene2Button1 = "CLIENT:SCENE2:BUTTON1",
+    ClientScene2Button2 = "CLIENT:SCENE2:BUTTON2"
 }
