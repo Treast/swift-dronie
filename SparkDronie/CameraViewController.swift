@@ -235,6 +235,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 MovementManager.shared.standBy()
             }
         }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Move1) { _ in
+            //DRONE FINISHED TRANSFORM -> we can go outside the screen
+            ParcoursManager.shared.open(file: "parcours6")
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            ParcoursManager.shared.playParcours(duration: 3) {
+                SocketIOManager.shared.emit(event: .ClientScene2Move1)
+                MovementManager.shared.standBy()
+            }
+        }
+        
         print("Finish register")
     }
 }

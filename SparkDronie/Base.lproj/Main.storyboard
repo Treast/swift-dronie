@@ -151,6 +151,7 @@
                                             <segment title="Third"/>
                                             <segment title="Fourth"/>
                                             <segment title="Fifth"/>
+                                            <segment title="Sixth"/>
                                         </segments>
                                         <connections>
                                             <action selector="changeParcours:" destination="jzr-46-tBQ" eventType="valueChanged" id="HGI-yi-4WQ"/>

@@ -58,6 +58,8 @@ class TestingViewController: UIViewController {
             ParcoursManager.shared.open(file: "parcours4")
         case 4:
             ParcoursManager.shared.open(file: "parcours5")
+        case 5:
+            ParcoursManager.shared.open(file: "parcours6")
         default:
             break
         }
