@@ -282,11 +282,53 @@
                     <connections>
                         <segue destination="jzr-46-tBQ" kind="relationship" relationship="viewControllers" id="BUb-pw-kJY"/>
                         <segue destination="Yq6-hd-IOs" kind="relationship" relationship="viewControllers" id="a49-h7-3xa"/>
+                        <segue destination="YDV-7Q-M1e" kind="relationship" relationship="viewControllers" id="V9l-YM-LKU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSy-xD-HQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="791" y="134"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Dfi-ld-GL9">
+            <objects>
+                <viewController id="YDV-7Q-M1e" customClass="EventViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wsi-9q-BJe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-vE-CK1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="K8N-Ym-K6b">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K8N-Ym-K6b" id="OYA-Vr-tnF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zl5-vE-CK1" firstAttribute="leading" secondItem="GoH-xt-nWH" secondAttribute="leading" id="3cM-P8-R2W"/>
+                            <constraint firstItem="GoH-xt-nWH" firstAttribute="bottom" secondItem="Zl5-vE-CK1" secondAttribute="bottom" id="JXT-on-APT"/>
+                            <constraint firstItem="Zl5-vE-CK1" firstAttribute="top" secondItem="GoH-xt-nWH" secondAttribute="top" id="Mbc-Pc-wU9"/>
+                            <constraint firstItem="GoH-xt-nWH" firstAttribute="trailing" secondItem="Zl5-vE-CK1" secondAttribute="trailing" id="hJZ-4j-C1F"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GoH-xt-nWH"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="D4g-nY-EZ1"/>
+                    <connections>
+                        <outlet property="tableView" destination="Zl5-vE-CK1" id="dYu-ah-vdO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tA-YN-Ny2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="821" y="911"/>
         </scene>
         <!--Camera-->
         <scene sceneID="o9O-jj-J0Y">

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DroneEvent: String {
+enum DroneEvent: String, CaseIterable {
     
     case DroneScene1TakeOff = "DRONE:SCENE1:TAKEOFF",
     DroneScene1Move1 = "DRONE:SCENE1:MOVE1",

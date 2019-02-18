@@ -34,6 +34,7 @@
 		268BFA5B221055CE00C98CC3 /* parcours4.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA56221055CD00C98CC3 /* parcours4.json */; };
 		268BFA5C221055CE00C98CC3 /* parcours1.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA57221055CD00C98CC3 /* parcours1.json */; };
 		268BFA5D221055CE00C98CC3 /* parcours3.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA58221055CE00C98CC3 /* parcours3.json */; };
+		26918811221AB5E90038C2D3 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26918810221AB5E90038C2D3 /* EventViewController.swift */; };
 		549441B603C3EF9725C69DB1 /* Pods_SparkDronie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918C45A981104CBC23A764FB /* Pods_SparkDronie.framework */; };
 		6763AC242212F36000FE7FF4 /* TrackerProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763AC232212F36000FE7FF4 /* TrackerProcessor.swift */; };
 		6763AC282213472E00FE7FF4 /* TrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763AC272213472E00FE7FF4 /* TrackingView.swift */; };
@@ -70,6 +71,7 @@
 		268BFA56221055CD00C98CC3 /* parcours4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours4.json; sourceTree = "<group>"; };
 		268BFA57221055CD00C98CC3 /* parcours1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours1.json; sourceTree = "<group>"; };
 		268BFA58221055CE00C98CC3 /* parcours3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours3.json; sourceTree = "<group>"; };
+		26918810221AB5E90038C2D3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		6763AC232212F36000FE7FF4 /* TrackerProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerProcessor.swift; sourceTree = "<group>"; };
 		6763AC272213472E00FE7FF4 /* TrackingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingView.swift; sourceTree = "<group>"; };
 		6763AC292213482200FE7FF4 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				26732D1422101BB200931D41 /* AppDelegate.swift */,
 				26732D1622101BB200931D41 /* ConnectionViewController.swift */,
 				6763AC292213482200FE7FF4 /* CameraViewController.swift */,
+				26918810221AB5E90038C2D3 /* EventViewController.swift */,
 				26083DF02211DBB000F182E0 /* ExperienceViewController.swift */,
 				26732D2622101DD000931D41 /* TestingViewController.swift */,
 				26732D1822101BB200931D41 /* Main.storyboard */,
@@ -350,6 +353,7 @@
 				6763AC282213472E00FE7FF4 /* TrackingView.swift in Sources */,
 				26083DF12211DBB000F182E0 /* ExperienceViewController.swift in Sources */,
 				26083DEF2211DA8300F182E0 /* DroneEvent.swift in Sources */,
+				26918811221AB5E90038C2D3 /* EventViewController.swift in Sources */,
 				6763AC242212F36000FE7FF4 /* TrackerProcessor.swift in Sources */,
 				26732D3522101E2F00931D41 /* CGPath.swift in Sources */,
 				263BDBEB2214ADA6001F41FD /* DroneDetection.swift in Sources */,
