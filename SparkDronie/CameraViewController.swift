@@ -212,24 +212,27 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move1) { _ in
-            ParcoursManager.shared.open(file: "parcours2")
-            ParcoursManager.shared.playParcours(duration: 10) {
+            ParcoursManager.shared.open(file: "parcours1")
+            MovementManager.shared.setSpeed(speedX: 0.4, speedY: 0.55)
+            ParcoursManager.shared.playParcours(duration: 6) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move1)
                 MovementManager.shared.standBy()
             }
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move2) { _ in
-            ParcoursManager.shared.open(file: "parcours3")
-            ParcoursManager.shared.playParcours(duration: 4) {
+            ParcoursManager.shared.open(file: "parcours2")
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            ParcoursManager.shared.playParcours(duration: 2) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move2)
                 MovementManager.shared.standBy()
             }
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move3) { _ in
-            ParcoursManager.shared.open(file: "parcours4")
-            ParcoursManager.shared.playParcours(duration: 4) {
+            ParcoursManager.shared.open(file: "parcours5")
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            ParcoursManager.shared.playParcours(duration: 3) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move3)
                 MovementManager.shared.standBy()
             }
