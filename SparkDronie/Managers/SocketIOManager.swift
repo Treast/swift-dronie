@@ -28,7 +28,7 @@ class SocketIOManager {
         }
     }
     
-    func emit(event: DroneEvent, data: Any) {
+    func emit(event: DroneEvent, data: Any = []) {
         self.socket.emit(event.rawValue, with: [data])
         print("Socket emit: \(event.rawValue)")
     }
