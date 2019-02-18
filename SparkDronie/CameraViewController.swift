@@ -246,6 +246,52 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
         }
         
+        SocketIOManager.shared.on(event: .DroneScene2Magnet1Out) { _ in
+           //@todo rollback parcours from current point
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Magnet1Hover) { _ in
+            //@todo play parcours from current point
+            
+            //ON FINISHED PARCOURS
+            SocketIOManager.shared.emit(event: .ClientScene2Magnet1End)
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Magnet2Out) { _ in
+            //@todo rollback parcours from current point
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Magnet2Hover) { _ in
+            //@todo play parcours from current point
+            
+            //ON FINISHED PARCOURS
+            SocketIOManager.shared.emit(event: .ClientScene2Magnet2End)
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Slider1) { _ in
+            //@todo each time drag move the drone following the the path
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Slider2) { _ in
+            //@todo each time drag move the drone following the the path
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Button1) { _ in
+            //@todo move from position to another point following path
+            
+            SocketIOManager.shared.emit(event: .ClientScene2Button1)
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Button2) { _ in
+            //@todo move from position to another point following path
+            SocketIOManager.shared.emit(event: .ClientScene2Button2)
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene2Button3) { _ in
+            //@todo move from position to another point following path
+            SocketIOManager.shared.emit(event: .ClientScene2Button3)
+        }
+        
         print("Finish register")
     }
 }

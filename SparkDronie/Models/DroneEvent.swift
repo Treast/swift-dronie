@@ -16,6 +16,10 @@ enum DroneEvent: String, CaseIterable {
     DroneScene1Move3 = "DRONE:SCENE1:MOVE3",
     DroneScene2Move1 = "DRONE:SCENE2:MOVE1",
     DroneScene2Magnet1 = "DRONE:SCENE2:MAGNET1",
+    DroneScene2Magnet1Hover = "DRONE:SCENE2:MAGNET1:HOVER",
+    DroneScene2Magnet1Out = "DRONE:SCENE2:MAGNET1:OUT",
+    DroneScene2Magnet2Hover = "DRONE:SCENE2:MAGNET2:HOVER",
+    DroneScene2Magnet2Out = "DRONE:SCENE2:MAGNET2:OUT",
     DroneScene2Magnet2 = "DRONE:SCENE2:MAGNET2",
     DroneScene2Slider1 = "DRONE:SCENE2:SLIDER1",
     DroneScene2Slider2 = "DRONE:SCENE2:SLIDER2",
@@ -32,5 +36,8 @@ enum DroneEvent: String, CaseIterable {
     ClientScene1Move3 = "CLIENT:SCENE1:MOVE3",
     ClientScene2Move1 = "CLIENT:SCENE2:MOVE1",
     ClientScene2Button1 = "CLIENT:SCENE2:BUTTON1",
-    ClientScene2Button2 = "CLIENT:SCENE2:BUTTON2"
+    ClientScene2Button2 = "CLIENT:SCENE2:BUTTON2",
+    ClientScene2Button3 = "CLIENT:SCENE2:BUTTON3",
+    ClientScene2Magnet1End = "CLIENT:SCENE2:MAGNET1:END",
+    ClientScene2Magnet2End = "CLIENT:SCENE2:MAGNET2:END"
 }
