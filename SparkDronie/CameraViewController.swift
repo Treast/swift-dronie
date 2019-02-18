@@ -54,8 +54,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         cameraLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         trackingView.imageAreaRect = cameraView.bounds
-        print(cameraLayer.frame.size)
-        print(cameraView.frame.size)
         
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
@@ -213,7 +211,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         SocketIOManager.shared.on(event: .DroneScene1Move1) { _ in
             ParcoursManager.shared.open(file: "parcours1")
-            MovementManager.shared.setSpeed(speedX: 0.4, speedY: 0.55)
+            MovementManager.shared.setSpeed(speedX: 0.3, speedY: 0.4)
             ParcoursManager.shared.playParcours(duration: 6) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move1)
                 MovementManager.shared.standBy()

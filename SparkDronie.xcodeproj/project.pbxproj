@@ -113,12 +113,12 @@
 		26732D1322101BB200931D41 /* SparkDronie */ = {
 			isa = PBXGroup;
 			children = (
-				6763AC262213470F00FE7FF4 /* Views */,
-				6763AC222212F34400FE7FF4 /* Tracking */,
 				26732D2822101E2E00931D41 /* Extensions */,
 				26732D2B22101E2F00931D41 /* Managers */,
 				26732D3022101E2F00931D41 /* Models */,
 				268BFA4D22101EA900C98CC3 /* Parcours */,
+				6763AC222212F34400FE7FF4 /* Tracking */,
+				6763AC262213470F00FE7FF4 /* Views */,
 				26732D1422101BB200931D41 /* AppDelegate.swift */,
 				26732D1622101BB200931D41 /* ConnectionViewController.swift */,
 				6763AC292213482200FE7FF4 /* CameraViewController.swift */,

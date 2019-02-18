@@ -37,6 +37,4 @@ extension EventViewController: UITableViewDataSource {
         
         return cell!
     }
-    
-    
 }
