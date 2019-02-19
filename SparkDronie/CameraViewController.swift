@@ -238,6 +238,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
     }
     
+    func onClickButton(dataArray:[Any], _ callback : @escaping () -> Void) {
+        var data = dataArray.first as! [String: Float]
+        if
+            let x = data["x"],
+            let y = data["y"] {
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            MovementManager.shared.moveTo(x: x, y: y) {
+                callback()
+            }
+        }
+    }
+    
     func registerListenersScene1() {
         SocketIOManager.shared.on(event: .DroneScene1TakeOff) { _ in
             MovementManager.shared.takeOffWithCompletion {
@@ -314,20 +326,26 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             //@todo each time drag move the drone following the the path
         }
         
-        SocketIOManager.shared.on(event: .DroneScene2Button1) { _ in
-            //@todo move from position to another point following path
-            
-            SocketIOManager.shared.emit(event: .ClientScene2Button1)
+        SocketIOManager.shared.on(event: .DroneScene2Button1) { dataArray in
+            self.onClickButton(dataArray: dataArray, {
+                SocketIOManager.shared.emit(event: .ClientScene2Button1)
+            })
         }
         
-        SocketIOManager.shared.on(event: .DroneScene2Button2) { _ in
-            //@todo move from position to another point following path
-            SocketIOManager.shared.emit(event: .ClientScene2Button2)
+        SocketIOManager.shared.on(event: .DroneScene2Button2) { dataArray in
+            self.onClickButton(dataArray: dataArray, {
+                SocketIOManager.shared.emit(event: .ClientScene2Button2)
+            })
         }
         
-        SocketIOManager.shared.on(event: .DroneScene2Button3) { _ in
-            //@todo move from position to another point following path
-            SocketIOManager.shared.emit(event: .ClientScene2Button3)
+        SocketIOManager.shared.on(event: .DroneScene2Button3) { dataArray in
+            self.onClickButton(dataArray: dataArray, {
+                SocketIOManager.shared.emit(event: .ClientScene2Button3)
+            })
+        }
+        
+        SocketIOManager.shared.on(event: .DroneScene3Land) { dataArray in
+            MovementManager.shared.land()
         }
         
         print("Finish register")
