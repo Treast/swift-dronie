@@ -11,9 +11,9 @@ import SocketIO
 
 struct VirtualEvent {
     var event: DroneEvent
-    var callback: (_ data:Any) -> Void
+    var callback: (_ data:[Any]) -> Void
     
-    init(event: DroneEvent, callback: @escaping (_ data:Any) -> Void) {
+    init(event: DroneEvent, callback: @escaping (_ data:[Any]) -> Void) {
         self.event = event
         self.callback = callback
     }
@@ -33,15 +33,16 @@ class SocketIOManager {
         self.stockedEvents = []
     }
     
-    func on(event: DroneEvent, callback : @escaping (_ data:Any) -> Void) {
+    func on(event: DroneEvent, callback : @escaping (_ data:[Any]) -> Void) {
         self.stockedEvents.append(VirtualEvent(event: event, callback: callback))
         self.socket.on(event.rawValue) { (dataArray, ack) in
+            
             callback(dataArray)
             print("Socket received: \(event.rawValue)")
         }
     }
     
-    func virtualEmit(event: DroneEvent, data: Any = []) {
+    func virtualEmit(event: DroneEvent, data: [Any] = []) {
         for virtualEvent in stockedEvents {
             if virtualEvent.event == event {
                 virtualEvent.callback(data)
@@ -49,7 +50,7 @@ class SocketIOManager {
         }
     }
     
-    func emit(event: DroneEvent, data: Any = []) {
+    func emit(event: DroneEvent, data: [Any] = []) {
         self.socket.emit(event.rawValue, with: [data])
         print("Socket emit: \(event.rawValue)")
     }

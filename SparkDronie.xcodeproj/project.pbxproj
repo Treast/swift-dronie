@@ -72,6 +72,8 @@
 		268BFA57221055CD00C98CC3 /* parcours1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours1.json; sourceTree = "<group>"; };
 		268BFA58221055CE00C98CC3 /* parcours3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours3.json; sourceTree = "<group>"; };
 		26918810221AB5E90038C2D3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		34E77EC946FEE54E1BA08028 /* Pods-SparkDronie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SparkDronie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SparkDronie/Pods-SparkDronie.debug.xcconfig"; sourceTree = "<group>"; };
+		54E2ADD9C3A746082C93296A /* Pods-SparkDronie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SparkDronie.release.xcconfig"; path = "Pods/Target Support Files/Pods-SparkDronie/Pods-SparkDronie.release.xcconfig"; sourceTree = "<group>"; };
 		67338ECC221B3669002D6D9C /* parcours6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours6.json; sourceTree = "<group>"; };
 		67338ECE221B448C002D6D9C /* parcours7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours7.json; sourceTree = "<group>"; };
 		6763AC232212F36000FE7FF4 /* TrackerProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerProcessor.swift; sourceTree = "<group>"; };
@@ -205,6 +207,8 @@
 			children = (
 				D751C40E1AAEF8A27DDD923C /* Pods-SparkDronie.debug.xcconfig */,
 				DF18AF23C2D7536DDD219565 /* Pods-SparkDronie.release.xcconfig */,
+				34E77EC946FEE54E1BA08028 /* Pods-SparkDronie.debug.xcconfig */,
+				54E2ADD9C3A746082C93296A /* Pods-SparkDronie.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -299,15 +303,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SparkDronie-checkManifestLockResult.txt",
 			);
@@ -321,8 +321,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SparkDronie/Pods-SparkDronie-frameworks.sh",
 				"${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK/DJISDK.framework",
@@ -330,8 +328,6 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJISDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",

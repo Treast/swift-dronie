@@ -14,6 +14,8 @@ class ParcoursManager {
     var currentIndex: Int = 0
     var currentParcoursDuration: Float = 0.0
     var currentParcoursLength: Float = 0.0
+    var currentPoint:ParcoursPoint? = nil
+    var timer:Timer? = nil
     
     static let shared: ParcoursManager = ParcoursManager()
     private init() {}
@@ -62,29 +64,41 @@ class ParcoursManager {
         
         if let distance = self.nextDistance(), let move = self.nextMove() {
             let timerInterval = currentParcoursDuration * distance / currentParcoursLength;
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
+            self.timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
                 // Code exécuté après move.duration seconds
-                self.executeParcours(callback)
+                if self.currentParcours != nil {
+                    self.executeParcours(callback)
+                    
+                    let xDirection = MovementManager.shared.speedFactor * cos(move)
+                    let yDirection = MovementManager.shared.speedFactorY * sin(move)
+                    
+                    if MovementManager.shared.isTesting {
+                        print("Moving angle: Angle: \(move * 180 / Float.pi) X: \(xDirection) Y: \(yDirection)")
+                    } else {
+                        if let mySpark = DJISDKManager.product() as? DJIAircraft {
+                            mySpark.mobileRemoteController?.rightStickHorizontal = xDirection
+                            mySpark.mobileRemoteController?.leftStickVertical = yDirection
+                        }
+                    }
+                    
+                    self.currentPoint = parcours.points[self.currentIndex]
+                    
+                    if MovementManager.shared.isTesting {
+                        print("Current point is now \(self.currentPoint)")
+                    }
+                }
                 
-                let xDirection = MovementManager.shared.speedFactor * cos(move)
-                let yDirection = MovementManager.shared.speedFactorY * sin(move)
-                
-                if MovementManager.shared.isTesting {
-                    print("Moving angle: Angle: \(move * 180 / Float.pi) X: \(xDirection) Y: \(yDirection)")
-                } else {
-                    if let mySpark = DJISDKManager.product() as? DJIAircraft {
-                        mySpark.mobileRemoteController?.rightStickHorizontal = xDirection
-                        mySpark.mobileRemoteController?.leftStickVertical = yDirection
+            }
+        } else {
+            if currentParcours != nil {
+                Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(parcours.points.count)), repeats: false) { (t) in
+                    self.stop()
+                    if let cb = callback {
+                        cb()
                     }
                 }
             }
-        } else {
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(parcours.points.count)), repeats: false) { (t) in
-               self.stop()
-                if let cb = callback {
-                    cb()
-                }
-            }
+            
         }
     }
     
@@ -95,6 +109,7 @@ class ParcoursManager {
     
     func stop() {
         self.reset()
+        self.timer?.invalidate()
         MovementManager.shared.stop()
     }
     

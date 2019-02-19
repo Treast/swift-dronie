@@ -20,7 +20,7 @@ class MovementManager {
     var rotationFactor: Float = 0.0
     var startPoint = Point3D(x: 0, y: 0, z: 0, w: 0)
     var isMoving: Bool = false
-    var isTesting = false
+    var isTesting = true
     
     func reset() {
         movements = []
@@ -30,6 +30,26 @@ class MovementManager {
     func appendMovement(movement: Movement){
         DirectionSequence.shared.content.append(movement.description())
         movements.append(movement)
+    }
+    
+    func moveTo(x:Float,y:Float,duration:Float = 5, _ callback: (() -> ())? = nil) {
+        
+        //ParcoursManager.shared.currentPoint = ParcoursPoint(x:0,y:0)
+        
+        if let currentPoint = ParcoursManager.shared.currentPoint {
+            ParcoursManager.shared.setParcours(parcours: Parcours(
+                points: [
+                    ParcoursPoint(x:currentPoint.x,y:currentPoint.y), //where we are atm
+                    ParcoursPoint(x:x,y:y) //where we want to go
+                ])
+            )
+            
+            ParcoursManager.shared.playParcours(duration: duration) {
+                if let callbackValue = callback {
+                    callbackValue()
+                }
+            }
+        }
     }
     
     func appendAction(action: Action){
