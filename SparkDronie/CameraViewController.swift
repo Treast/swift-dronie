@@ -9,6 +9,7 @@
 import UIKit
 import Vision
 import AVFoundation
+import GPUImage
 
 struct Position {
     var x = 0
@@ -18,7 +19,7 @@ struct Position {
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
-    @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var cameraView: RenderView!
     @IBOutlet weak var trackingView: TrackingView!
     @IBOutlet weak var trackingBarItem: UIBarButtonItem!
     
@@ -35,6 +36,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var isTracking: Bool = false
     var timerDetect: Timer? = nil;
     
+    let videoCamera:Camera?
+    let filter = SobelEdgeDetection()
+    
     var inputObservations = [VNDetectedObjectObservation]()
     
     lazy var sequenceRequestHandler = VNSequenceRequestHandler()
@@ -43,7 +47,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     private lazy var captureSession: AVCaptureSession = {
         let session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSession.Preset.photo
         guard
             let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
             let input = try? AVCaptureDeviceInput(device: backCamera)
@@ -52,13 +55,26 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         return session
     }()
     
+    required init(coder aDecoder: NSCoder)
+    {
+        do {
+            videoCamera = try Camera(sessionPreset:.vga640x480, location:.backFacing)
+        } catch {
+            videoCamera = nil
+            print("Couldn't initialize camera with error: \(error)")
+        }
+        
+        super.init(coder: aDecoder)!
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cameraView?.layer.addSublayer(cameraLayer)
+        videoCamera!.addTarget(filter)
+        filter.addTarget(cameraView)
         cameraLayer.frame = cameraView.bounds
         cameraLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
@@ -70,8 +86,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         SocketIOManager.shared.connect()
         self.registerListenersScene1()
-        self.captureSession.addOutput(videoOutput)
-        self.captureSession.startRunning()
+        /**
+         *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[AVCaptureSession addOutput:] Cannot add output <AVCaptureVideoDataOutput: 0x281259100> to capture session <AVCaptureSession: 0x281078470 [AVCaptureSessionPresetInputPriority]> because more than one output of the same type is unsupported'
+        */
+        // videoCamera!.captureSession.addOutput(videoOutput) -> Bug
+        videoCamera?.delegate = self
+        videoCamera?.startCapture()
     }
     
     @IBAction func calibrate(_ sender: Any) {
@@ -134,51 +154,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
         
-        guard isTracking else {
-            return
-        }
-        
-        var trackingRequests = [VNRequest]()
-        
-        for inputObservation in inputObservations {
-            let request = VNTrackObjectRequest(detectedObjectObservation: inputObservation)
-            request.trackingLevel = .accurate
-            
-            trackingRequests.append(request)
-        }
-        
-        do {
-            try sequenceRequestHandler.perform(trackingRequests, on: pixelBuffer, orientation: .right)
-        } catch {
-            
-        }
-        
-        for processedRequest in trackingRequests {
-            guard let results = processedRequest.results as? [VNObservation] else {
-                continue
-            }
-            guard let observation = results.first as? VNDetectedObjectObservation else {
-                continue
-            }
-            
-            inputObservations = []
-            inputObservations.append(observation)
-        }
-        
-        DispatchQueue.main.async {
-            if let first = self.inputObservations.first {
-                self.trackingView.polyRect = TrackedPolyRect(observation: first)
-                
-                self.previousCenterPoint = first.boundingBox.origin
-                
-                //do somethin with the bounding box
-                self.trackingView.setNeedsDisplay()
-            }
-        }
     }
     
     
@@ -404,4 +380,56 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         print("Finish register")
     }
+}
+
+extension CameraViewController: CameraDelegate {
+    func didCaptureBuffer(_ sampleBuffer: CMSampleBuffer) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        guard isTracking else {
+            return
+        }
+        
+        var trackingRequests = [VNRequest]()
+        
+        for inputObservation in inputObservations {
+            let request = VNTrackObjectRequest(detectedObjectObservation: inputObservation)
+            request.trackingLevel = .accurate
+            
+            trackingRequests.append(request)
+        }
+        
+        do {
+            try sequenceRequestHandler.perform(trackingRequests, on: pixelBuffer, orientation: .right)
+        } catch {
+            
+        }
+        
+        for processedRequest in trackingRequests {
+            guard let results = processedRequest.results as? [VNObservation] else {
+                continue
+            }
+            guard let observation = results.first as? VNDetectedObjectObservation else {
+                continue
+            }
+            
+            inputObservations = []
+            inputObservations.append(observation)
+        }
+        
+        DispatchQueue.main.async {
+            if let first = self.inputObservations.first {
+                self.trackingView.polyRect = TrackedPolyRect(observation: first)
+                
+                self.previousCenterPoint = first.boundingBox.origin
+                
+                //do somethin with the bounding box
+                self.trackingView.setNeedsDisplay()
+            }
+        }
+    }
+    
+    
 }

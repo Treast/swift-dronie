@@ -10,6 +10,8 @@
 		26083DEF2211DA8300F182E0 /* DroneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26083DEE2211DA8300F182E0 /* DroneEvent.swift */; };
 		263BDBEB2214ADA6001F41FD /* DroneDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BDBEA2214ADA6001F41FD /* DroneDetection.swift */; };
 		26581B65221189AB006F03CA /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26581B64221189AB006F03CA /* SocketIOManager.swift */; };
+		266BBEBC221DC860004D8A3E /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 266BBEB9221DC855004D8A3E /* GPUImage.framework */; };
+		266BBEBD221DC867004D8A3E /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 266BBEB9221DC855004D8A3E /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26732D1522101BB200931D41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D1422101BB200931D41 /* AppDelegate.swift */; };
 		26732D1722101BB200931D41 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D1622101BB200931D41 /* ConnectionViewController.swift */; };
 		26732D1A22101BB200931D41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26732D1822101BB200931D41 /* Main.storyboard */; };
@@ -42,10 +44,62 @@
 		6763AC2A2213482200FE7FF4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6763AC292213482200FE7FF4 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		266BBEB4221DC855004D8A3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
+			remoteInfo = GPUImage_macOS;
+		};
+		266BBEB6221DC855004D8A3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
+			remoteInfo = GPUImageTests_macOS;
+		};
+		266BBEB8221DC855004D8A3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34E91E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+		266BBEBA221DC855004D8A3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34F11E524A2200B8604F;
+			remoteInfo = GPUImageTests_iOS;
+		};
+		266BBEBE221DC86E004D8A3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9E34E81E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26F1DE85221DC3B500A931EE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				266BBEBD221DC867004D8A3E /* GPUImage.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		26083DEE2211DA8300F182E0 /* DroneEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneEvent.swift; sourceTree = "<group>"; };
 		263BDBEA2214ADA6001F41FD /* DroneDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneDetection.swift; sourceTree = "<group>"; };
 		26581B64221189AB006F03CA /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../../../Downloads/GPUImage2-master 2/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		26732D1122101BB200931D41 /* SparkDronie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkDronie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26732D1422101BB200931D41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26732D1622101BB200931D41 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				266BBEBC221DC860004D8A3E /* GPUImage.framework in Frameworks */,
 				549441B603C3EF9725C69DB1 /* Pods_SparkDronie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +151,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		266BBEAE221DC855004D8A3E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				266BBEB5221DC855004D8A3E /* GPUImage.framework */,
+				266BBEB7221DC855004D8A3E /* GPUImageTests_macOS.xctest */,
+				266BBEB9221DC855004D8A3E /* GPUImage.framework */,
+				266BBEBB221DC855004D8A3E /* GPUImageTests_iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		26732D0822101BB200931D41 = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +282,7 @@
 		F20A5DE50671273EEC350647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */,
 				918C45A981104CBC23A764FB /* Pods_SparkDronie.framework */,
 			);
 			name = Frameworks;
@@ -233,10 +300,12 @@
 				26732D0E22101BB200931D41 /* Frameworks */,
 				26732D0F22101BB200931D41 /* Resources */,
 				D4F57D4C880B67C5F8813882 /* [CP] Embed Pods Frameworks */,
+				26F1DE85221DC3B500A931EE /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				266BBEBF221DC86E004D8A3E /* PBXTargetDependency */,
 			);
 			name = SparkDronie;
 			productName = SparkDronie;
@@ -269,12 +338,49 @@
 			mainGroup = 26732D0822101BB200931D41;
 			productRefGroup = 26732D1222101BB200931D41 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 266BBEAE221DC855004D8A3E /* Products */;
+					ProjectRef = 266BBEAD221DC855004D8A3E /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				26732D1022101BB200931D41 /* SparkDronie */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		266BBEB5221DC855004D8A3E /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 266BBEB4221DC855004D8A3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		266BBEB7221DC855004D8A3E /* GPUImageTests_macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_macOS.xctest;
+			remoteRef = 266BBEB6221DC855004D8A3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		266BBEB9221DC855004D8A3E /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 266BBEB8221DC855004D8A3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		266BBEBB221DC855004D8A3E /* GPUImageTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_iOS.xctest;
+			remoteRef = 266BBEBA221DC855004D8A3E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		26732D0F22101BB200931D41 /* Resources */ = {
@@ -370,6 +476,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		266BBEBF221DC86E004D8A3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage_iOS;
+			targetProxy = 266BBEBE221DC86E004D8A3E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		26732D1822101BB200931D41 /* Main.storyboard */ = {
@@ -513,7 +627,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDGLM83545;
+				DEVELOPMENT_TEAM = 54PCF2T5ZE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SparkDronie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -533,7 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDGLM83545;
+				DEVELOPMENT_TEAM = 54PCF2T5ZE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SparkDronie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

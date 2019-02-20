@@ -69,7 +69,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-0M-5jd" userLabel="CameraView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-0M-5jd" userLabel="CameraView" customClass="RenderView" customModule="GPUImage">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -124,7 +124,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="cameraView" destination="Gjc-0M-5jd" id="f9E-qm-03a"/>
+                        <outlet property="cameraView" destination="Gjc-0M-5jd" id="vkw-23-lxG"/>
                         <outlet property="trackingBarItem" destination="WdR-Pl-DP0" id="qt3-Fz-y1p"/>
                         <outlet property="trackingView" destination="8Gn-Du-0Cc" id="OWh-Ti-pgu"/>
                     </connections>
