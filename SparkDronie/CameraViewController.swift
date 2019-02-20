@@ -322,10 +322,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             //@todo each time drag move the drone following the the path
         }
         
-        SocketIOManager.shared.on(event: .DroneScene2Slider2) { _ in
-            //@todo each time drag move the drone following the the path
-        }
-        
         SocketIOManager.shared.on(event: .DroneScene2Button1) { dataArray in
             self.onClickButton(dataArray: dataArray, {
                 SocketIOManager.shared.emit(event: .ClientScene2Button1)
@@ -344,8 +340,25 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             })
         }
         
-        SocketIOManager.shared.on(event: .DroneScene3Land) { dataArray in
-            MovementManager.shared.land()
+        SocketIOManager.shared.on(event: .DroneScene3Button1) { dataArray in
+            
+            //@todo rideau tombe
+            //@todo move forward
+            //@todo land
+            
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(6), repeats: false) {_ in
+                
+                let moveDuration:CGFloat = 3
+                
+                MovementManager.shared.appendMovement(movement: Movement(direction: .Front, duration: moveDuration))
+                MovementManager.shared.play()
+                
+                Timer.scheduledTimer(withTimeInterval: TimeInterval(moveDuration), repeats: false) {_ in
+                    MovementManager.shared.land()
+                }
+            }
+            
+            
         }
         
         print("Finish register")
