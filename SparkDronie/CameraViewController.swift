@@ -211,12 +211,13 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func onMagnetOut(startPoint: inout ParcoursPoint?, _ callback : @escaping () -> Void) {
+        ParcoursManager.shared.stop()
         if let startPointValue = startPoint {
             ParcoursManager.shared.stop()
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            /*MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
             MovementManager.shared.moveTo(x: startPointValue.x, y: startPointValue.y) { //move back to start ponit
                 callback()
-            }
+            }*/
         }
     }
     
