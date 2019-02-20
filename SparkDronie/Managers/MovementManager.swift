@@ -34,6 +34,8 @@ class MovementManager {
     
     func moveTo(x:Float,y:Float,duration:Float = 5, _ callback: (() -> ())? = nil) {
         
+        print("MOVE TO x:\(x) y:\(y)")
+        
         //ParcoursManager.shared.currentPoint = ParcoursPoint(x:0,y:0)
         
         if let currentPoint = ParcoursManager.shared.currentPoint {

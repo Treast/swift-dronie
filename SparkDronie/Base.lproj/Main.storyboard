@@ -110,11 +110,18 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="WdR-Pl-DP0">
-                            <connections>
-                                <action selector="startTracking:" destination="nJT-YS-awS" id="bvZ-B5-YzT"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="play" id="WdR-Pl-DP0">
+                                <connections>
+                                    <action selector="startTracking:" destination="nJT-YS-awS" id="bvZ-B5-YzT"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="stop" id="BCi-uU-u5U">
+                                <connections>
+                                    <action selector="stopMovement:" destination="nJT-YS-awS" id="dtw-Tn-0v8"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Gjc-0M-5jd" id="f9E-qm-03a"/>
