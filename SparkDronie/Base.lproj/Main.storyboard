@@ -75,8 +75,21 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-Du-0Cc" customClass="TrackingView" customModule="SparkDronie" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AMs-SG-5Bs">
+                                        <rect key="frame" x="40" y="128.5" width="240" height="198"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="198" id="LKE-VD-pXQ"/>
+                                            <constraint firstAttribute="width" constant="240" id="NAX-gB-bJm"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="AMs-SG-5Bs" firstAttribute="centerY" secondItem="8Gn-Du-0Cc" secondAttribute="centerY" id="13i-Rg-QT5"/>
+                                    <constraint firstItem="AMs-SG-5Bs" firstAttribute="centerX" secondItem="8Gn-Du-0Cc" secondAttribute="centerX" id="EHt-aR-5fS"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="RvW-7e-aGo" appends="YES" id="lDl-Q8-hjV"/>
                                     <outletCollection property="gestureRecognizers" destination="XsY-5w-ByB" appends="YES" id="Ert-jX-aWa"/>
@@ -125,6 +138,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="Gjc-0M-5jd" id="vkw-23-lxG"/>
+                        <outlet property="testingImageView" destination="AMs-SG-5Bs" id="Htq-xc-BUO"/>
                         <outlet property="trackingBarItem" destination="WdR-Pl-DP0" id="qt3-Fz-y1p"/>
                         <outlet property="trackingView" destination="8Gn-Du-0Cc" id="OWh-Ti-pgu"/>
                     </connections>
@@ -137,7 +151,7 @@
                 </panGestureRecognizer>
                 <tapGestureRecognizer id="XsY-5w-ByB"/>
             </objects>
-            <point key="canvasLocation" x="2764" y="615.74212893553226"/>
+            <point key="canvasLocation" x="2763.75" y="614.78873239436621"/>
         </scene>
         <!--Testing-->
         <scene sceneID="O4e-lz-WaK">
@@ -151,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VWs-HC-0Jk">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                         <segments>
                                             <segment title="First"/>
                                             <segment title="Second"/>
@@ -159,56 +173,63 @@
                                             <segment title="Fourth"/>
                                             <segment title="Fifth"/>
                                             <segment title="Sixth"/>
+                                            <segment title="Seventh"/>
                                         </segments>
                                         <connections>
                                             <action selector="changeParcours:" destination="jzr-46-tBQ" eventType="valueChanged" id="HGI-yi-4WQ"/>
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8k0-ck-ged">
-                                        <rect key="frame" x="0.0" y="47" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="42.5" width="320" height="45.5"/>
                                         <state key="normal" title="Take off"/>
                                         <connections>
                                             <action selector="takeOff:" destination="jzr-46-tBQ" eventType="touchUpInside" id="EKl-dl-mS1"/>
                                         </connections>
                                     </button>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lQf-ws-nB5">
+                                        <rect key="frame" x="-2" y="88" width="324" height="47"/>
+                                        <connections>
+                                            <action selector="filterSliderChanged:" destination="jzr-46-tBQ" eventType="valueChanged" id="fbY-Hs-hpO"/>
+                                        </connections>
+                                    </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dAv-be-Qvd">
-                                        <rect key="frame" x="0.0" y="97" width="320" height="301.5"/>
+                                        <rect key="frame" x="0.0" y="134" width="320" height="273.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wbI-Je-vXx">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="301.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="273.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed X (0.3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsp-hw-MBI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="50.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="45.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-lR-5fU">
-                                                        <rect key="frame" x="-2" y="50.5" width="164" height="51"/>
+                                                        <rect key="frame" x="-2" y="45.5" width="164" height="46.5"/>
                                                         <connections>
                                                             <action selector="speedChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="jUu-hq-gZV"/>
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V50-cZ-wKk">
-                                                        <rect key="frame" x="0.0" y="100.5" width="160" height="50.5"/>
+                                                        <rect key="frame" x="0.0" y="91" width="160" height="46"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7Eh-YT-eLi">
-                                                        <rect key="frame" x="-2" y="151" width="164" height="51"/>
+                                                        <rect key="frame" x="-2" y="137" width="164" height="46.5"/>
                                                         <connections>
                                                             <action selector="speedYChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="x1o-CL-NHb"/>
                                                         </connections>
                                                     </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration (10)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60k-1G-lRV">
-                                                        <rect key="frame" x="0.0" y="201" width="160" height="50.5"/>
+                                                        <rect key="frame" x="0.0" y="182.5" width="160" height="45.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="L4w-6J-3dB">
-                                                        <rect key="frame" x="-2" y="251.5" width="164" height="51"/>
+                                                        <rect key="frame" x="-2" y="228" width="164" height="46.5"/>
                                                         <connections>
                                                             <action selector="durationChange:" destination="jzr-46-tBQ" eventType="valueChanged" id="Yge-a0-zLj"/>
                                                         </connections>
@@ -216,10 +237,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="O1O-ag-xTQ">
-                                                <rect key="frame" x="160" y="0.0" width="160" height="301.5"/>
+                                                <rect key="frame" x="160" y="0.0" width="160" height="273.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-ve-idC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="151"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="137"/>
                                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-5" maxY="0.0"/>
                                                         <state key="normal" title="Run"/>
                                                         <connections>
@@ -227,7 +248,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTc-4Y-rxG">
-                                                        <rect key="frame" x="0.0" y="151" width="160" height="150.5"/>
+                                                        <rect key="frame" x="0.0" y="137" width="160" height="136.5"/>
                                                         <state key="normal" title="StandBy"/>
                                                         <connections>
                                                             <action selector="standBy:" destination="jzr-46-tBQ" eventType="touchUpInside" id="rbm-Jq-LMS"/>
@@ -238,14 +259,14 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-Af-9e3">
-                                        <rect key="frame" x="0.0" y="398.5" width="320" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="407.5" width="320" height="46"/>
                                         <state key="normal" title="Land"/>
                                         <connections>
                                             <action selector="land:" destination="jzr-46-tBQ" eventType="touchUpInside" id="PbB-Tg-gjc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg3-gH-3C2">
-                                        <rect key="frame" x="0.0" y="449" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="453.5" width="320" height="45.5"/>
                                         <state key="normal" title="STOOOOOOP"/>
                                         <connections>
                                             <action selector="stop:" destination="jzr-46-tBQ" eventType="touchUpInside" id="QCj-3q-4oK"/>
@@ -267,6 +288,7 @@
                     <connections>
                         <outlet property="durationLabel" destination="60k-1G-lRV" id="g8n-j3-2RY"/>
                         <outlet property="durationSlider" destination="L4w-6J-3dB" id="EMg-BL-VvU"/>
+                        <outlet property="filterSlider" destination="lQf-ws-nB5" id="pzK-Xo-Ubx"/>
                         <outlet property="segmentedControl" destination="VWs-HC-0Jk" id="Eww-Tk-qcL"/>
                         <outlet property="speedLabel" destination="wsp-hw-MBI" id="P4E-Oc-enS"/>
                         <outlet property="speedSlider" destination="gg0-lR-5fU" id="ZoJ-pl-d5a"/>

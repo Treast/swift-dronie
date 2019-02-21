@@ -38,7 +38,10 @@ class SocketIOManager {
         self.socket.on(event.rawValue) { (dataArray, ack) in
             
             callback(dataArray)
-            print("Socket received: \(event.rawValue)")
+            
+            if event != DroneEvent.DroneDetect {
+                print("Socket received: \(event.rawValue)")
+            }
         }
     }
     
@@ -50,7 +53,7 @@ class SocketIOManager {
         }
     }
     
-    func emit(event: DroneEvent, data: [Any] = []) {
+    func emit(event: DroneEvent, data: Any? = nil) {
         self.socket.emit(event.rawValue, with: [data])
         print("Socket emit: \(event.rawValue)")
     }

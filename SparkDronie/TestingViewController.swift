@@ -18,9 +18,13 @@ class TestingViewController: UIViewController {
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var speedYLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var filterSlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    @IBAction func filterSliderChanged(_ sender: Any) {
+        Configuration.shared.filterValue = filterSlider.value
     }
     
     @IBAction func standBy(_ sender: Any) {
@@ -60,6 +64,12 @@ class TestingViewController: UIViewController {
             ParcoursManager.shared.open(file: "parcours5")
         case 5:
             ParcoursManager.shared.open(file: "parcours6")
+        case 6:
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            ParcoursManager.shared.currentPoint = ParcoursPoint(x: 0.0, y: 0.0)
+            MovementManager.shared.moveTo(x: 5.0, y: 5.0, duration: 3) {
+                
+            }
         default:
             break
         }
