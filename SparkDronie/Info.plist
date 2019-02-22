@@ -2,18 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Use to track any object</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Use to track any object</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Use to track any object</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Use to track any object</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -37,11 +29,19 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Use to track any object</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Use to track any object</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Use to track any object</string>
 	<key>NSMicrophoneUsageDescription</key>
+	<string>Use to track any object</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Use to track any object</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Use to track any object</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Use to track any object</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

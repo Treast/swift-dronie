@@ -185,26 +185,16 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func setupTimedDetect() {
         timerDetect = Timer.scheduledTimer(withTimeInterval: TimeInterval(0.2), repeats: true) { t in
             if self.calibrationCount >= 4, let point = self.previousCenterPoint {
-                SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: point).toJson())
+                //SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: point).toJson())
             }
         }
     }
     
     func onMagnetOut(startPoint: inout ParcoursPoint?, _ callback : @escaping () -> Void) {
         ParcoursManager.shared.stop()
-        if let startPointValue = startPoint {
-            ParcoursManager.shared.stop()
-            /*MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
-            MovementManager.shared.moveTo(x: startPointValue.x, y: startPointValue.y) { //move back to start ponit
-                callback()
-            }*/
-        }
     }
     
     func onMagnetHover(startPoint: inout ParcoursPoint?,dataArray:[Any], _ callback : @escaping () -> Void) {
-        if startPoint == nil {
-            startPoint = ParcoursManager.shared.currentPoint
-        }
         
         ParcoursManager.shared.stop()
         var data = dataArray.first as! [String: NSNumber]
@@ -213,8 +203,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if
             let x = data["x"],
             let y = data["y"] {
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
-            MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.38)
+            MovementManager.shared.moveTo(x: Float(x), y: -Float(y)) {
                 callback()
             }
         }
@@ -225,10 +215,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if
             let x = data["x"],
             let y = data["y"] {
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
-            MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.38)
+            MovementManager.shared.moveTo(x: -Float(x), y: -Float(y)) {
                 callback()
             }
+            
+            //SocketIOManager.shared.emit(event: .MoveToButton,data: [["x": -Float(x), "y": -Float(y)]])
         }
     }
     
@@ -250,6 +242,20 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                 SocketIOManager.shared.emit(event: .ClientScene1Move1)
                 MovementManager.shared.standBy()
             }
+        }
+        
+        SocketIOManager.shared.on(event: .DroneDetect) { dataArray in
+            var data = dataArray.first as! [String: NSNumber]
+            print("Data received: \(data)")
+            
+            if
+                let x = data["x"],
+                let y = data["y"] {
+                
+                ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(x), y: Float(y))
+                //SocketIOManager.shared.emit(event: .CurrentPoint,data: [ParcoursManager.shared.currentPoint])
+            }
+            
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move2) { _ in
@@ -336,6 +342,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                         x : (endPoint.x - currPoint.x) * alphaValue + currPoint.x,
                         y: (endPoint.y - currPoint.y) * alphaValue + currPoint.y
                     )
+                    
+                    //SocketIOManager.shared.emit(event: .Sliding,data: [pointToGoTo])
                     
                     MovementManager.shared.moveTo(x: pointToGoTo.x, y: pointToGoTo.y)
                 }

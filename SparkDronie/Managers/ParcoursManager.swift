@@ -81,11 +81,9 @@ class ParcoursManager {
                         }
                     }
                     
-                    self.currentPoint = parcours.points[self.currentIndex]
+                    //self.currentPoint = parcours.points[self.currentIndex]
                     
-                    if MovementManager.shared.isTesting {
-                        print("Current point is now \(self.currentPoint)")
-                    }
+                
                 }
                 
             }

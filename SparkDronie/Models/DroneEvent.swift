@@ -41,5 +41,8 @@ enum DroneEvent: String, CaseIterable {
     ClientScene2Button3 = "CLIENT:SCENE2:BUTTON3",
     ClientScene2Magnet1End = "CLIENT:SCENE2:MAGNET1:END",
     ClientScene2Magnet2End = "CLIENT:SCENE2:MAGNET2:END",
-    ClientScene2Slider1End = "CLIENT:SCENE2:SLIDER1:END"
+    ClientScene2Slider1End = "CLIENT:SCENE2:SLIDER1:END",
+    CurrentPoint = "DEBUG:CURRENT_POINT",
+    Sliding = "DEBUG:SLIDING",
+    MoveToButton = "DEBUG:MOVE_TO_BUTTON"
 }
