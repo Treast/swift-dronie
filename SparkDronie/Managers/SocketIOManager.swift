@@ -27,6 +27,8 @@ class SocketIOManager {
     private let socket: SocketIOClient
     private var stockedEvents: [VirtualEvent]
     
+    public var onLogReceived: ((_ str:String) -> Void)? = nil
+    
     private init() {
         self.manager = SocketManager(socketURL: URL(string: self.socketURL)!, config: [.log(false), .compress])
         self.socket = manager.defaultSocket
@@ -41,9 +43,15 @@ class SocketIOManager {
             
             if event != DroneEvent.DroneDetect {
                 print("Socket received: \(event.rawValue)")
+                
+                if let onLog = self.onLogReceived {
+                    onLog(event.rawValue)
+                }
             }
         }
     }
+    
+    
     
     func virtualEmit(event: DroneEvent, data: [Any] = []) {
         for virtualEvent in stockedEvents {
@@ -56,6 +64,11 @@ class SocketIOManager {
     func emit(event: DroneEvent, data: Any? = nil) {
         self.socket.emit(event.rawValue, with: [data])
         print("Socket emit: \(event.rawValue)")
+        
+        if let onLog = onLogReceived {
+            onLog(event.rawValue)
+        }
+        
     }
     
     func connect() {

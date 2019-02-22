@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -69,78 +68,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gjc-0M-5jd" userLabel="CameraView" customClass="RenderView" customModule="GPUImage">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gn-Du-0Cc" customClass="TrackingView" customModule="SparkDronie" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AMs-SG-5Bs">
-                                        <rect key="frame" x="40" y="128.5" width="240" height="198"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="198" id="LKE-VD-pXQ"/>
-                                            <constraint firstAttribute="width" constant="240" id="NAX-gB-bJm"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="AMs-SG-5Bs" firstAttribute="centerY" secondItem="8Gn-Du-0Cc" secondAttribute="centerY" id="13i-Rg-QT5"/>
-                                    <constraint firstItem="AMs-SG-5Bs" firstAttribute="centerX" secondItem="8Gn-Du-0Cc" secondAttribute="centerX" id="EHt-aR-5fS"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev1-8s-7QV">
+                                <rect key="frame" x="144" y="98" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stop"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="RvW-7e-aGo" appends="YES" id="lDl-Q8-hjV"/>
-                                    <outletCollection property="gestureRecognizers" destination="XsY-5w-ByB" appends="YES" id="Ert-jX-aWa"/>
+                                    <action selector="stopMovement:" destination="nJT-YS-awS" eventType="touchUpInside" id="IDj-OF-T83"/>
                                 </connections>
-                            </view>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nvf-3O-Jim">
+                                <rect key="frame" x="0.0" y="158" width="320" height="361"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="2tm-5w-Ox4" firstAttribute="bottom" secondItem="Gjc-0M-5jd" secondAttribute="bottom" id="FGn-e4-AJh"/>
-                            <constraint firstItem="8Gn-Du-0Cc" firstAttribute="trailing" secondItem="2tm-5w-Ox4" secondAttribute="trailing" id="JCh-jA-aAT"/>
-                            <constraint firstItem="Gjc-0M-5jd" firstAttribute="trailing" secondItem="2tm-5w-Ox4" secondAttribute="trailing" id="JTP-pD-UQb"/>
-                            <constraint firstItem="Gjc-0M-5jd" firstAttribute="leading" secondItem="2tm-5w-Ox4" secondAttribute="leading" id="OtX-Mh-w7b"/>
-                            <constraint firstItem="2tm-5w-Ox4" firstAttribute="bottom" secondItem="8Gn-Du-0Cc" secondAttribute="bottom" id="Vcu-ie-btw"/>
-                            <constraint firstItem="Gjc-0M-5jd" firstAttribute="top" secondItem="iKq-uS-3O4" secondAttribute="top" id="dd9-My-fNZ"/>
-                            <constraint firstItem="8Gn-Du-0Cc" firstAttribute="leading" secondItem="2tm-5w-Ox4" secondAttribute="leading" id="txR-rb-q10"/>
-                            <constraint firstItem="8Gn-Du-0Cc" firstAttribute="top" secondItem="2tm-5w-Ox4" secondAttribute="top" id="xbb-2e-9k3"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2tm-5w-Ox4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Player" id="WQt-5A-wmD">
-                        <leftBarButtonItems>
-                            <barButtonItem systemItem="camera" id="imC-oI-ltc">
-                                <connections>
-                                    <action selector="calibrate:" destination="nJT-YS-awS" id="b2u-E0-Dbe"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="bYl-ig-Tum">
-                                <connections>
-                                    <action selector="clear:" destination="nJT-YS-awS" id="l6b-4N-eIk"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="play" id="WdR-Pl-DP0">
-                                <connections>
-                                    <action selector="startTracking:" destination="nJT-YS-awS" id="bvZ-B5-YzT"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="stop" id="BCi-uU-u5U">
-                                <connections>
-                                    <action selector="stopMovement:" destination="nJT-YS-awS" id="dtw-Tn-0v8"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Player" id="WQt-5A-wmD"/>
                     <connections>
-                        <outlet property="cameraView" destination="Gjc-0M-5jd" id="vkw-23-lxG"/>
-                        <outlet property="testingImageView" destination="AMs-SG-5Bs" id="Htq-xc-BUO"/>
-                        <outlet property="trackingBarItem" destination="WdR-Pl-DP0" id="qt3-Fz-y1p"/>
-                        <outlet property="trackingView" destination="8Gn-Du-0Cc" id="OWh-Ti-pgu"/>
+                        <outlet property="logTextView" destination="Nvf-3O-Jim" id="kxb-1l-2ri"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xi-Al-GR7" userLabel="First Responder" sceneMemberID="firstResponder"/>

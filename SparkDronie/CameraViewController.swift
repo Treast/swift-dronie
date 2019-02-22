@@ -9,7 +9,6 @@
 import UIKit
 import Vision
 import AVFoundation
-import GPUImage
 
 struct Position {
     var x = 0
@@ -22,10 +21,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     @IBOutlet weak var testingImageView: UIImageView!
     var pixelBuffer: CVPixelBuffer?
     
-    @IBOutlet weak var cameraView: RenderView!
-    @IBOutlet weak var trackingView: TrackingView!
     @IBOutlet weak var trackingBarItem: UIBarButtonItem!
     
+    @IBOutlet weak var logTextView: UITextView!
     var objectsToTrack = [TrackedPolyRect]()
     var selectedBounds: TrackedPolyRect?
     
@@ -39,155 +37,22 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var isTracking: Bool = false
     var timerDetect: Timer? = nil;
     
-    let videoCamera:Camera?
-    let filter = SobelEdgeDetection()
-    
-    var inputObservations = [VNDetectedObjectObservation]()
-    
-    lazy var sequenceRequestHandler = VNSequenceRequestHandler()
-    
-    private lazy var cameraLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-    
-    private lazy var captureSession: AVCaptureSession = {
-        let session = AVCaptureSession()
-        guard
-            let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
-            let input = try? AVCaptureDeviceInput(device: backCamera)
-            else { return session }
-        session.addInput(input)
-        return session
-    }()
-    
-    required init(coder aDecoder: NSCoder)
-    {
-        do {
-            videoCamera = try Camera(sessionPreset:.vga640x480, location:.backFacing)
-        } catch {
-            videoCamera = nil
-            print("Couldn't initialize camera with error: \(error)")
-        }
-        
-        super.init(coder: aDecoder)!
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        filter.edgeStrength = Configuration.shared.filterValue
+        
+        SocketIOManager.shared.onLogReceived = { str in
+            self.logTextView.text += str+"\n"
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoCamera!.addTarget(cameraView)
-        cameraLayer.frame = cameraView.bounds
-        cameraLayer.videoGravity = AVLayerVideoGravity.resizeAspect
         
-        trackingView.imageAreaRect = cameraView.bounds
-        
-        let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "MyQueue"))
         
         SocketIOManager.shared.connect()
         self.registerListenersScene1()
-        /**
-         *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[AVCaptureSession addOutput:] Cannot add output <AVCaptureVideoDataOutput: 0x281259100> to capture session <AVCaptureSession: 0x281078470 [AVCaptureSessionPresetInputPriority]> because more than one output of the same type is unsupported'
-        */
-        // videoCamera!.captureSession.addOutput(videoOutput) -> Bug
-        videoCamera?.delegate = self
-        videoCamera?.startCapture()
-    }
-    
-    @IBAction func calibrate(_ sender: Any) {
-        if calibrationCount < 4, let currentCenter = previousCenterPoint {
-            SocketIOManager.shared.emit(event: .DroneCalibration, data: DroneDetection(point: currentCenter).toJson())
-            calibrationCount += 1
-        }
-    }
-    
-    func exifOrientationForDeviceOrientation(_ deviceOrientation: UIDeviceOrientation) -> CGImagePropertyOrientation {
-        switch deviceOrientation {
-        case .portraitUpsideDown:
-            return .rightMirrored
-            
-        case .landscapeLeft:
-            return .downMirrored
-            
-        case .landscapeRight:
-            return .upMirrored
-            
-        default:
-            return .leftMirrored
-        }
-    }
-    
-    
-    func exifOrientationForCurrentDeviceOrientation() -> CGImagePropertyOrientation {
-        return exifOrientationForDeviceOrientation(UIDevice.current.orientation)
-    }
-    
-    @IBAction func clear(_ sender: Any) {
-        self.selectedBounds = nil
-        trackingView.rubberbandingStart = CGPoint.zero
-        trackingView.rubberbandingVector = CGPoint.zero
-        trackingView.setNeedsDisplay()
-    }
-    
-    @IBAction func startTracking(_ sender: Any) {
-        if isTracking {
-            if let t = timerDetect {
-                t.invalidate()
-            }
-            isTracking = false
-            self.trackingView.polyRect = nil
-            self.selectedBounds = nil
-            trackingView.rubberbandingStart = CGPoint.zero
-            trackingView.rubberbandingVector = CGPoint.zero
-            self.trackingView.setNeedsDisplay()
-        } else {
-            isTracking = true
-            if let rect = selectedBounds {
-                let inputObservation = VNDetectedObjectObservation(boundingBox: rect.boundingBox)
-                
-                inputObservations.append(inputObservation)
-            }
-            
-            clear(self)
-            setupTimedDetect()
-        }
-    }
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        
-    }
-    
-    
-    
-    @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
-        switch gestureRecognizer.state {
-        case .began:
-            let locationInView = gestureRecognizer.location(in: trackingView)
-            trackingView.rubberbandingStart = locationInView
-        case .changed:
-            let translation = gestureRecognizer.translation(in: trackingView)
-            
-            trackingView.rubberbandingVector = translation
-            trackingView.setNeedsDisplay()
-        case .ended:
-            let selectedBBox = trackingView.rubberbandingRectNormalized
-            if selectedBBox.width > 0 && selectedBBox.height > 0 {
-                self.selectedBounds = TrackedPolyRect(cgRect: selectedBBox)
-            }
-        default:
-            break
-        }
-    }
-    
-    func setupTimedDetect() {
-        timerDetect = Timer.scheduledTimer(withTimeInterval: TimeInterval(0.2), repeats: true) { t in
-            if self.calibrationCount >= 4, let point = self.previousCenterPoint {
-                //SocketIOManager.shared.emit(event: .DroneDetect, data: DroneDetection(point: point).toJson())
-            }
-        }
+       
     }
     
     func onMagnetOut(startPoint: inout ParcoursPoint?, _ callback : @escaping () -> Void) {
@@ -203,7 +68,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if
             let x = data["x"],
             let y = data["y"] {
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.38)
+            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
             MovementManager.shared.moveTo(x: Float(x), y: -Float(y)) {
                 callback()
             }
@@ -215,8 +80,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if
             let x = data["x"],
             let y = data["y"] {
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.38)
-            MovementManager.shared.moveTo(x: -Float(x), y: -Float(y)) {
+            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
+            MovementManager.shared.moveTo(x: Float(x), y: -Float(y)) {
                 callback()
             }
             
@@ -228,10 +93,22 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         ParcoursManager.shared.stop()
     }
     
+    
+    
     func registerListenersScene1() {
         SocketIOManager.shared.on(event: .DroneScene1TakeOff) { _ in
             MovementManager.shared.takeOffWithCompletion {
-                SocketIOManager.shared.emit(event: .ClientTakeOff)
+                MovementManager.shared.setSpeed(speedX: 0.2, speedY: 0.3)
+                
+                let moveDuration:CGFloat = 1.9
+                
+                MovementManager.shared.appendMovement(movement: Movement(direction: .Down, duration: moveDuration))
+                MovementManager.shared.play()
+                
+                Timer.scheduledTimer(withTimeInterval: TimeInterval(moveDuration), repeats: false) {_ in
+                    SocketIOManager.shared.emit(event: .ClientTakeOff)
+                }
+                
             }
         }
         
@@ -344,7 +221,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                     )
                     
                     //SocketIOManager.shared.emit(event: .Sliding,data: [pointToGoTo])
-                    
+                    MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
                     MovementManager.shared.moveTo(x: pointToGoTo.x, y: pointToGoTo.y)
                 }
             }
@@ -394,86 +271,3 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 }
 
-extension CameraViewController: CameraDelegate {
-    func didCaptureBuffer(_ sampleBuffer: CMSampleBuffer) {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-        
-        // self.pixelBuffer = pixelBuffer
-        
-        guard isTracking else {
-            return
-        }
-        
-        var trackingRequests = [VNRequest]()
-        
-        for inputObservation in inputObservations {
-            let request = VNTrackObjectRequest(detectedObjectObservation: inputObservation)
-            request.trackingLevel = .accurate
-            
-            trackingRequests.append(request)
-        }
-        
-        do {
-            try sequenceRequestHandler.perform(trackingRequests, on: pixelBuffer, orientation: .up)
-        } catch {
-            
-        }
-        
-        for processedRequest in trackingRequests {
-            guard let results = processedRequest.results as? [VNObservation] else {
-                continue
-            }
-            guard let observation = results.first as? VNDetectedObjectObservation else {
-                continue
-            }
-            inputObservations = []
-            inputObservations.append(observation)
-        }
-        
-        DispatchQueue.main.async {
-            /**
-                if let pixel = self.pixelBuffer {
-                    // self.testingImageView.image = UIImage(ciImage: CIImage(cvPixelBuffer: pixel))
-                }
-                self.testingImageView.image = self.pictureOutput.synchronousImageCapture()
-            */
-            if let first = self.inputObservations.first {
-                self.trackingView.polyRect = TrackedPolyRect(observation: first)
-                
-                self.previousCenterPoint = first.boundingBox.origin
-                print(first.boundingBox)
-                
-                //do somethin with the bounding box
-                self.trackingView.setNeedsDisplay()
-            }
-        }
-    }
-    
-    func buffer(from image: UIImage) -> CVPixelBuffer? {
-        let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
-        var pixelBuffer : CVPixelBuffer?
-        let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(image.size.width), Int(image.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
-        guard (status == kCVReturnSuccess) else {
-            return nil
-        }
-        
-        CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-        let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)
-        
-        let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = CGContext(data: pixelData, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
-        
-        context?.translateBy(x: 0, y: image.size.height)
-        context?.scaleBy(x: 1.0, y: -1.0)
-        
-        UIGraphicsPushContext(context!)
-        image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-        UIGraphicsPopContext()
-        CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-        
-        return pixelBuffer
-    }
-    
-}

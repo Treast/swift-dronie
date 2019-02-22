@@ -32,7 +32,7 @@ class MovementManager {
         movements.append(movement)
     }
     
-    func moveTo(x:Float,y:Float,duration:Float = 2, _ callback: (() -> ())? = nil) {
+    func moveTo(x:Float,y:Float,duration:Float = 3.5, _ callback: (() -> ())? = nil) {
         
         //ParcoursManager.shared.currentPoint = ParcoursPoint(x:0,y:0)
         
