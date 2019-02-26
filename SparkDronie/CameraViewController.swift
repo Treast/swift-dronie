@@ -267,6 +267,13 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             
         }
         
+        SocketIOManager.shared.on(event: .DroneStop) { dataArray in
+            
+            self.stopMovement(self)
+            
+            
+        }
+        
         print("Finish register")
     }
 }

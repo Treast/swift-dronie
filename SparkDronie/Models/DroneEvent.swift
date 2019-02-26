@@ -29,6 +29,7 @@ enum DroneEvent: String, CaseIterable {
     DroneScene2Button3 = "DRONE:SCENE2:BUTTON3",
     DroneScene3Button1 = "DRONE:SCENE3:BUTTON1",
     DroneScene3Land = "DRONE:SCENE3:LAND",
+    DroneStop = "DRONE:STOP",
     DroneCalibration = "DRONE:CALIBRATION",
     DroneDetect = "DRONE:DETECT",
     ClientTakeOff = "CLIENT:SCENE1:TAKEOFF",
