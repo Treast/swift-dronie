@@ -68,17 +68,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev1-8s-7QV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ev1-8s-7QV">
                                 <rect key="frame" x="144" y="98" width="32" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="stopMovement:" destination="nJT-YS-awS" eventType="touchUpInside" id="IDj-OF-T83"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nvf-3O-Jim">
-                                <rect key="frame" x="0.0" y="158" width="320" height="361"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nvf-3O-Jim">
+                                <rect key="frame" x="0.0" y="139.5" width="320" height="379.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -86,6 +84,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ev1-8s-7QV" firstAttribute="top" secondItem="2tm-5w-Ox4" secondAttribute="top" constant="34" id="2vf-iQ-tec"/>
+                            <constraint firstItem="Nvf-3O-Jim" firstAttribute="top" secondItem="ev1-8s-7QV" secondAttribute="bottom" constant="30" id="Q6Y-hm-K7I"/>
+                            <constraint firstItem="Nvf-3O-Jim" firstAttribute="trailing" secondItem="2tm-5w-Ox4" secondAttribute="trailing" id="SJy-sU-LcS"/>
+                            <constraint firstItem="Nvf-3O-Jim" firstAttribute="bottom" secondItem="2tm-5w-Ox4" secondAttribute="bottom" id="UcK-yY-awS"/>
+                            <constraint firstItem="Nvf-3O-Jim" firstAttribute="leading" secondItem="2tm-5w-Ox4" secondAttribute="leading" id="hUF-9f-cy4"/>
+                            <constraint firstItem="Nvf-3O-Jim" firstAttribute="firstBaseline" secondItem="ev1-8s-7QV" secondAttribute="baseline" constant="21" symbolType="layoutAnchor" id="kZr-es-RoK"/>
+                            <constraint firstItem="ev1-8s-7QV" firstAttribute="centerX" secondItem="2tm-5w-Ox4" secondAttribute="centerX" id="zLz-ga-gDn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2tm-5w-Ox4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Player" id="WQt-5A-wmD"/>
@@ -124,6 +131,9 @@
                                             <segment title="Fifth"/>
                                             <segment title="Sixth"/>
                                             <segment title="Seventh"/>
+                                            <segment title="Eight"/>
+                                            <segment title="Nine"/>
+                                            <segment title="Ten"/>
                                         </segments>
                                         <connections>
                                             <action selector="changeParcours:" destination="jzr-46-tBQ" eventType="valueChanged" id="HGI-yi-4WQ"/>

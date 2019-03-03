@@ -35,6 +35,9 @@
 		268BFA5C221055CE00C98CC3 /* parcours1.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA57221055CD00C98CC3 /* parcours1.json */; };
 		268BFA5D221055CE00C98CC3 /* parcours3.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA58221055CE00C98CC3 /* parcours3.json */; };
 		26918811221AB5E90038C2D3 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26918810221AB5E90038C2D3 /* EventViewController.swift */; };
+		26B4F270222BB1B80007A820 /* parcours9.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B4F26D222BB1B70007A820 /* parcours9.json */; };
+		26B4F271222BB1B80007A820 /* parcours10.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B4F26E222BB1B80007A820 /* parcours10.json */; };
+		26B4F272222BB1B80007A820 /* parcours8.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B4F26F222BB1B80007A820 /* parcours8.json */; };
 		461146035F44D856918747D9 /* Pods_SparkDronie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29124C5A7B10F51FD8F38B88 /* Pods_SparkDronie.framework */; };
 		67338ECD221B3669002D6D9C /* parcours6.json in Resources */ = {isa = PBXBuildFile; fileRef = 67338ECC221B3669002D6D9C /* parcours6.json */; };
 		67338ECF221B448C002D6D9C /* parcours7.json in Resources */ = {isa = PBXBuildFile; fileRef = 67338ECE221B448C002D6D9C /* parcours7.json */; };
@@ -127,6 +130,9 @@
 		268BFA57221055CD00C98CC3 /* parcours1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours1.json; sourceTree = "<group>"; };
 		268BFA58221055CE00C98CC3 /* parcours3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours3.json; sourceTree = "<group>"; };
 		26918810221AB5E90038C2D3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		26B4F26D222BB1B70007A820 /* parcours9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = parcours9.json; path = ../../../../parcours9.json; sourceTree = "<group>"; };
+		26B4F26E222BB1B80007A820 /* parcours10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = parcours10.json; path = ../../../../parcours10.json; sourceTree = "<group>"; };
+		26B4F26F222BB1B80007A820 /* parcours8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = parcours8.json; path = ../../../../parcours8.json; sourceTree = "<group>"; };
 		29124C5A7B10F51FD8F38B88 /* Pods_SparkDronie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SparkDronie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67338ECC221B3669002D6D9C /* parcours6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours6.json; sourceTree = "<group>"; };
 		67338ECE221B448C002D6D9C /* parcours7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours7.json; sourceTree = "<group>"; };
@@ -235,6 +241,9 @@
 				67338ECC221B3669002D6D9C /* parcours6.json */,
 				268BFA55221055CD00C98CC3 /* parcours5.json */,
 				67338ECE221B448C002D6D9C /* parcours7.json */,
+				26B4F26F222BB1B80007A820 /* parcours8.json */,
+				26B4F26D222BB1B70007A820 /* parcours9.json */,
+				26B4F26E222BB1B80007A820 /* parcours10.json */,
 				268BFA4E22101EBE00C98CC3 /* parcours.json */,
 			);
 			path = Parcours;
@@ -386,15 +395,18 @@
 			files = (
 				268BFA59221055CE00C98CC3 /* parcours2.json in Resources */,
 				26732D1F22101BB400931D41 /* LaunchScreen.storyboard in Resources */,
+				26B4F271222BB1B80007A820 /* parcours10.json in Resources */,
 				268BFA5B221055CE00C98CC3 /* parcours4.json in Resources */,
 				268BFA5A221055CE00C98CC3 /* parcours5.json in Resources */,
 				26732D1C22101BB400931D41 /* Assets.xcassets in Resources */,
 				67338ECD221B3669002D6D9C /* parcours6.json in Resources */,
+				26B4F270222BB1B80007A820 /* parcours9.json in Resources */,
 				268BFA4F22101EBE00C98CC3 /* parcours.json in Resources */,
 				268BFA5D221055CE00C98CC3 /* parcours3.json in Resources */,
 				67338ECF221B448C002D6D9C /* parcours7.json in Resources */,
 				268BFA5C221055CE00C98CC3 /* parcours1.json in Resources */,
 				26732D1A22101BB200931D41 /* Main.storyboard in Resources */,
+				26B4F272222BB1B80007A820 /* parcours8.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +646,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDGLM83545;
+				DEVELOPMENT_TEAM = 54PCF2T5ZE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SparkDronie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -656,7 +668,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDGLM83545;
+				DEVELOPMENT_TEAM = 54PCF2T5ZE;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SparkDronie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

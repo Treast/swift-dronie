@@ -16,6 +16,8 @@ class ParcoursManager {
     var currentParcoursLength: Float = 0.0
     var currentPoint:ParcoursPoint? = nil
     var timer:Timer? = nil
+    var xFactor: Float = 0.75
+    var yFactor: Float = 0.8
     
     static let shared: ParcoursManager = ParcoursManager()
     private init() {}
@@ -76,8 +78,8 @@ class ParcoursManager {
                         print("Moving angle: Angle: \(move * 180 / Float.pi) X: \(xDirection) Y: \(yDirection)")
                     } else {
                         if let mySpark = DJISDKManager.product() as? DJIAircraft {
-                            mySpark.mobileRemoteController?.rightStickHorizontal = xDirection
-                            mySpark.mobileRemoteController?.leftStickVertical = yDirection
+                            mySpark.mobileRemoteController?.rightStickHorizontal = xDirection * self.xFactor
+                            mySpark.mobileRemoteController?.leftStickVertical = yDirection * self.yFactor
                         }
                     }
                     

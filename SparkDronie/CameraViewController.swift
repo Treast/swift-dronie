@@ -68,7 +68,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if
             let x = data["x"],
             let y = data["y"] {
-            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
+            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.4)
             MovementManager.shared.moveTo(x: Float(x), y: -Float(y)) {
                 callback()
             }
@@ -98,7 +98,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func registerListenersScene1() {
         SocketIOManager.shared.on(event: .DroneScene1TakeOff) { _ in
             MovementManager.shared.takeOffWithCompletion {
-                MovementManager.shared.setSpeed(speedX: 0.2, speedY: 0.3)
+                MovementManager.shared.setSpeed(speedX: 0.2, speedY: 0.2)
                 
                 let moveDuration:CGFloat = 1.9
                 
@@ -113,8 +113,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move1) { _ in
-            ParcoursManager.shared.open(file: "parcours1")
-            MovementManager.shared.setSpeed(speedX: 0.3, speedY: 0.4)
+            ParcoursManager.shared.open(file: "parcours8")
+            MovementManager.shared.setSpeed(speedX: 0.3, speedY: 0.3)
             ParcoursManager.shared.playParcours(duration: 6) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move1)
                 MovementManager.shared.standBy()
@@ -136,8 +136,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move2) { _ in
-            ParcoursManager.shared.open(file: "parcours2")
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            ParcoursManager.shared.open(file: "parcours9")
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.3)
             ParcoursManager.shared.playParcours(duration: 2) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move2)
                 MovementManager.shared.standBy()
@@ -145,8 +145,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         SocketIOManager.shared.on(event: .DroneScene1Move3) { _ in
-            ParcoursManager.shared.open(file: "parcours5")
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            ParcoursManager.shared.open(file: "parcours10")
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.3)
             ParcoursManager.shared.playParcours(duration: 3) {
                 SocketIOManager.shared.emit(event: .ClientScene1Move3)
                 MovementManager.shared.standBy()
@@ -156,7 +156,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         SocketIOManager.shared.on(event: .DroneScene2Move1) { _ in
             //DRONE FINISHED TRANSFORM -> we can go outside the screen
             ParcoursManager.shared.open(file: "parcours6")
-            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
+            MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.3)
             ParcoursManager.shared.playParcours(duration: 3) {
                 SocketIOManager.shared.emit(event: .ClientScene2Move1)
                 MovementManager.shared.standBy()
@@ -221,7 +221,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
                     )
                     
                     //SocketIOManager.shared.emit(event: .Sliding,data: [pointToGoTo])
-                    MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
+                    MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.4)
                     MovementManager.shared.moveTo(x: pointToGoTo.x, y: pointToGoTo.y)
                 }
             }

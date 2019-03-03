@@ -68,8 +68,13 @@ class TestingViewController: UIViewController {
             MovementManager.shared.setSpeed(speedX: 0.25, speedY: 0.55)
             ParcoursManager.shared.currentPoint = ParcoursPoint(x: 0.0, y: 0.0)
             MovementManager.shared.moveTo(x: 5.0, y: 5.0, duration: 3) {
-                
             }
+        case 7:
+            ParcoursManager.shared.open(file: "parcours8")
+        case 8:
+            ParcoursManager.shared.open(file: "parcours9")
+        case 9:
+            ParcoursManager.shared.open(file: "parcours10")
         default:
             break
         }
