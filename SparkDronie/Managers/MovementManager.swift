@@ -20,7 +20,7 @@ class MovementManager {
     var rotationFactor: Float = 0.0
     var startPoint = Point3D(x: 0, y: 0, z: 0, w: 0)
     var isMoving: Bool = false
-    var isTesting = false
+    var isTesting = true
     
     func reset() {
         movements = []
@@ -96,7 +96,7 @@ class MovementManager {
                         mySpark.mobileRemoteController?.leftStickVertical = speedStandBy
                         print("Up")
                     } else {
-                        mySpark.mobileRemoteController?.leftStickVertical = -1.5 * speedStandBy
+                        mySpark.mobileRemoteController?.leftStickVertical = -1.4 * speedStandBy
                         print("Down")
                     }
                     mySpark.mobileRemoteController?.leftStickHorizontal = 0.0

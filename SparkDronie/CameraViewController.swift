@@ -69,7 +69,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let x = data["x"],
             let y = data["y"] {
             MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.4)
-            MovementManager.shared.moveTo(x: Float(x), y: -Float(y)) {
+            MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
                 callback()
             }
         }
@@ -78,10 +78,13 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func onClickButton(dataArray:[Any], _ callback : @escaping () -> Void) {
         var data = dataArray.first as! [String: NSNumber]
         if
-            let x = data["x"],
-            let y = data["y"] {
+            let ox = data["x1"],
+            let oy = data["y1"],
+            let x = data["x2"],
+            let y = data["y2"] {
             MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
-            MovementManager.shared.moveTo(x: Float(x), y: -Float(y)) {
+            ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
+            MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
                 callback()
             }
             

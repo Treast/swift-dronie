@@ -17,7 +17,7 @@ class ParcoursManager {
     var currentPoint: ParcoursPoint? = ParcoursPoint(x: 0, y: 0)
     var timer:Timer? = nil
     var xFactor: Float = 0.8
-    var yFactor: Float = 0.9
+    var yFactor: Float = 0.8
     var isFirstMove = false
     
     static let shared: ParcoursManager = ParcoursManager()
