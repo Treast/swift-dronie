@@ -59,19 +59,21 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         ParcoursManager.shared.stop()
     }
     
-    func onMagnetHover(startPoint: inout ParcoursPoint?,dataArray:[Any], _ callback : @escaping () -> Void) {
+    func onMagnetHover(dataArray:[Any], _ callback : @escaping () -> Void) {
         
-        ParcoursManager.shared.stop()
         var data = dataArray.first as! [String: NSNumber]
-        print("Data received: \(data)")
-        
         if
-            let x = data["x"],
-            let y = data["y"] {
-            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.4)
+            let ox = data["x1"],
+            let oy = data["y1"],
+            let x = data["x2"],
+            let y = data["y2"] {
+            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
+            ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
             MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
                 callback()
             }
+            
+            //SocketIOManager.shared.emit(event: .MoveToButton,data: [["x": -Float(x), "y": -Float(y)]])
         }
     }
     
@@ -168,26 +170,26 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
         }
         
+        /*
         SocketIOManager.shared.on(event: .DroneScene2Magnet1Out) { _ in
-            
             self.onMagnetOut(startPoint: &self.magnetStartPoint, {})
         }
+         */
         
         SocketIOManager.shared.on(event: .DroneScene2Magnet1Hover) { (dataArray)  in
-            print(dataArray)
-            self.onMagnetHover(startPoint: &self.magnetStartPoint, dataArray: dataArray, {
+            self.onMagnetHover(dataArray: dataArray, {
                 SocketIOManager.shared.emit(event: .ClientScene2Magnet1End)
             })
             
         }
-        
+        /*
         SocketIOManager.shared.on(event: .DroneScene2Magnet2Out) { _ in
             self.onMagnetOut(startPoint: &self.magnet2StartPoint, {})
         }
+ */
         
         SocketIOManager.shared.on(event: .DroneScene2Magnet2Hover) { ( dataArray) in
-            
-            self.onMagnetHover(startPoint: &self.magnet2StartPoint, dataArray: dataArray, {
+            self.onMagnetHover(dataArray: dataArray, {
                 SocketIOManager.shared.emit(event: .ClientScene2Magnet2End)
             })
         }
