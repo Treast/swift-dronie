@@ -18,6 +18,7 @@ class ParcoursManager {
     var timer:Timer? = nil
     var xFactor: Float = 0.8
     var yFactor: Float = 0.9
+    var isFirstMove = false
     
     static let shared: ParcoursManager = ParcoursManager()
     private init() {}
@@ -48,6 +49,8 @@ class ParcoursManager {
         
         var length: Float = 0.0
         
+        isFirstMove = true
+        
         if(parcours.points.count > 2) {
             for i in 0...parcours.points.count - 2 {
                 let pointA = parcours.points[i]
@@ -76,11 +79,14 @@ class ParcoursManager {
         guard let parcours = currentParcours else { return }
         
         if let distance = self.nextDistance(), let move = self.nextMove() {
-            let timerInterval = currentParcoursDuration * distance / currentParcoursLength;
-            print("Timer interval Distance:\(distance) Length:\(currentParcoursLength) Duration:\(currentParcoursDuration) Interval:\(timerInterval)")
+            var timerInterval = currentParcoursDuration * distance / currentParcoursLength;
+            if (isFirstMove) {
+                timerInterval = 0.0
+            }
             self.timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
                 // Code exécuté après move.duration seconds
                 if self.currentParcours != nil {
+                    self.isFirstMove = false
                     self.executeParcours(callback)
                     
                     let xDirection = MovementManager.shared.speedFactor * cos(move)
