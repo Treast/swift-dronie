@@ -248,6 +248,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             })
         }
         
+        SocketIOManager.shared.on(event: .DroneScene2Button4) { dataArray in
+            self.onClickButton(dataArray: dataArray, {
+                SocketIOManager.shared.emit(event: .ClientScene2Button4)
+            })
+        }
+        
         SocketIOManager.shared.on(event: .DroneScene3Button1) { dataArray in
             
             //@todo rideau tombe
