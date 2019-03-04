@@ -32,7 +32,7 @@ class MovementManager {
         movements.append(movement)
     }
     
-    func moveTo(x:Float,y:Float,duration:Float = 3.5, _ callback: (() -> ())? = nil) {
+    func moveTo(x:Float, y:Float,duration:Float = 3.5, _ callback: (() -> ())? = nil) {
         
         //ParcoursManager.shared.currentPoint = ParcoursPoint(x:0,y:0)
         
@@ -41,13 +41,14 @@ class MovementManager {
             print("MOVE TO x:\(x) y:\(y) FROM \(currentPoint)")
             ParcoursManager.shared.setParcours(parcours: Parcours(
                 points: [
-                    ParcoursPoint(x:currentPoint.x,y:currentPoint.y), //where we are atm
+                    ParcoursPoint(x:currentPoint.x, y:currentPoint.y), //where we are atm
                     ParcoursPoint(x:x,y:y) //where we want to go
                 ])
             )
             
             ParcoursManager.shared.playParcours(duration: duration) {
                 if let callbackValue = callback {
+                    print("Callback")
                     callbackValue()
                 }
             }
@@ -95,7 +96,7 @@ class MovementManager {
                         mySpark.mobileRemoteController?.leftStickVertical = speedStandBy
                         print("Up")
                     } else {
-                        mySpark.mobileRemoteController?.leftStickVertical = -1.7 * speedStandBy
+                        mySpark.mobileRemoteController?.leftStickVertical = -1.5 * speedStandBy
                         print("Down")
                     }
                     mySpark.mobileRemoteController?.leftStickHorizontal = 0.0

@@ -14,10 +14,10 @@ class ParcoursManager {
     var currentIndex: Int = 0
     var currentParcoursDuration: Float = 0.0
     var currentParcoursLength: Float = 0.0
-    var currentPoint:ParcoursPoint? = nil
+    var currentPoint: ParcoursPoint? = ParcoursPoint(x: 0, y: 0)
     var timer:Timer? = nil
-    var xFactor: Float = 0.75
-    var yFactor: Float = 0.8
+    var xFactor: Float = 0.8
+    var yFactor: Float = 0.9
     
     static let shared: ParcoursManager = ParcoursManager()
     private init() {}
@@ -39,21 +39,32 @@ class ParcoursManager {
     func setParcours(parcours: Parcours) {
         currentIndex = 0
         currentParcours = parcours
+    }
+    
+    func playParcours(duration: Float, _ callback: (() -> ())? = nil) {
+        guard let parcours = currentParcours else {
+            return
+        }
+        
         var length: Float = 0.0
-        for i in 0...parcours.points.count - 2 {
-            let pointA = parcours.points[i]
-            let pointB = parcours.points[i + 1]
+        
+        if(parcours.points.count > 2) {
+            for i in 0...parcours.points.count - 2 {
+                let pointA = parcours.points[i]
+                let pointB = parcours.points[i + 1]
+                let x = pointB.x - pointA.x
+                let y = pointB.y - pointA.y
+                length += sqrt(x * x + y * y)
+            }
+        } else {
+            let pointA = parcours.points[0]
+            let pointB = parcours.points[1]
             let x = pointB.x - pointA.x
             let y = pointB.y - pointA.y
             length += sqrt(x * x + y * y)
         }
+        
         currentParcoursLength = length
-    }
-    
-    func playParcours(duration: Float, _ callback: (() -> ())? = nil) {
-        guard currentParcours != nil else {
-            return
-        }
         MovementManager.shared.stop()
         
         currentParcoursDuration = duration
@@ -66,6 +77,7 @@ class ParcoursManager {
         
         if let distance = self.nextDistance(), let move = self.nextMove() {
             let timerInterval = currentParcoursDuration * distance / currentParcoursLength;
+            print("Timer interval Distance:\(distance) Length:\(currentParcoursLength) Duration:\(currentParcoursDuration) Interval:\(timerInterval)")
             self.timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
                 // Code exécuté après move.duration seconds
                 if self.currentParcours != nil {
@@ -83,15 +95,13 @@ class ParcoursManager {
                         }
                     }
                     
-                    //self.currentPoint = parcours.points[self.currentIndex]
-                    
-                
+                    self.currentPoint = parcours.points[self.currentIndex]
                 }
-                
             }
         } else {
             if currentParcours != nil {
-                Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(parcours.points.count)), repeats: false) { (t) in
+                print("FUCKING SHIT\(currentParcoursDuration / Float(parcours.points.count))")
+                Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(parcours.points.count - 1)), repeats: false) { (t) in
                     self.stop()
                     if let cb = callback {
                         cb()

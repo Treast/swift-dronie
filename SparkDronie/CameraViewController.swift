@@ -121,7 +121,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
         }
         
-        SocketIOManager.shared.on(event: .DroneDetect) { dataArray in
+        /*
+ SocketIOManager.shared.on(event: .DroneDetect) { dataArray in
             var data = dataArray.first as! [String: NSNumber]
             print("Data received: \(data)")
             
@@ -134,6 +135,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
             
         }
+ */
         
         SocketIOManager.shared.on(event: .DroneScene1Move2) { _ in
             ParcoursManager.shared.open(file: "parcours9")
