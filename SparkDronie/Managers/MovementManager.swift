@@ -20,7 +20,7 @@ class MovementManager {
     var rotationFactor: Float = 0.0
     var startPoint = Point3D(x: 0, y: 0, z: 0, w: 0)
     var isMoving: Bool = false
-    var isTesting = true
+    var isTesting = false
     
     func reset() {
         movements = []
@@ -41,8 +41,8 @@ class MovementManager {
             print("MOVE TO x:\(x) y:\(y) FROM \(currentPoint)")
             ParcoursManager.shared.setParcours(parcours: Parcours(
                 points: [
-                    ParcoursPoint(x:currentPoint.x, y:currentPoint.y), //where we are atm
-                    ParcoursPoint(x:x,y:y) //where we want to go
+                    ParcoursPoint(x: currentPoint.x, y: currentPoint.y), //where we are atm
+                    ParcoursPoint(x: x, y: y) //where we want to go
                 ])
             )
             

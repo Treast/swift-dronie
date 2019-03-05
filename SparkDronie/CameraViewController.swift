@@ -66,10 +66,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let ox = data["x1"],
             let oy = data["y1"],
             let x = data["x2"],
-            let y = data["y2"] {
-            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
+            let y = data["y2"],
+            let c = data["c"]{
+            MovementManager.shared.setSpeed(speedX: 0.7, speedY: 0.68)
+            print("Duration: \( 3.5 * Float(c))")
             ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
-            MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
+            MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3.5 * Float(c)) {
                 callback()
             }
             
@@ -83,10 +85,12 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let ox = data["x1"],
             let oy = data["y1"],
             let x = data["x2"],
-            let y = data["y2"] {
-            MovementManager.shared.setSpeed(speedX: 0.45, speedY: 0.68)
+            let y = data["y2"],
+            let c = data["c"] {
+            MovementManager.shared.setSpeed(speedX: 0.7, speedY: 0.68)
+            print("Duration: \( 3.5 * Float(c))")
             ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
-            MovementManager.shared.moveTo(x: Float(x), y: Float(y)) {
+            MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3.5 * Float(c)) {
                 callback()
             }
             
