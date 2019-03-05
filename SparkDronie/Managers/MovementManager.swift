@@ -55,6 +55,19 @@ class MovementManager {
         }
     }
     
+    func forceMove(move: Movement.Direction) {
+        if let mySpark = DJISDKManager.product() as? DJIAircraft {
+            if self.isTesting {
+                mySpark.mobileRemoteController?.rightStickVertical = self.speedFactor * Float(move.value().z)
+                mySpark.mobileRemoteController?.rightStickHorizontal = self.speedFactor * Float(move.value().x)
+                mySpark.mobileRemoteController?.leftStickVertical = self.speedFactor * Float(move.value().y)
+                mySpark.mobileRemoteController?.leftStickHorizontal = self.rotationFactor * Float(move.value().w)
+            } else {
+                print(move)
+            }
+        }
+    }
+    
     func appendAction(action: Action){
         actions.append(action)
     }
@@ -89,15 +102,11 @@ class MovementManager {
         print("Standby")
         Timer.scheduledTimer(withTimeInterval: TimeInterval(standByInterval), repeats: true) { t in
             if let mySpark = DJISDKManager.product() as? DJIAircraft {
-                print("GetSpark")
                 if self.isMoving {
-                    print("IsMoving")
                     if count % 2 == 0 {
                         mySpark.mobileRemoteController?.leftStickVertical = speedStandBy
-                        print("Up")
                     } else {
-                        mySpark.mobileRemoteController?.leftStickVertical = -1.4 * speedStandBy
-                        print("Down")
+                        mySpark.mobileRemoteController?.leftStickVertical = -1 * speedStandBy
                     }
                     mySpark.mobileRemoteController?.leftStickHorizontal = 0.0
                     mySpark.mobileRemoteController?.rightStickHorizontal = 0.0
@@ -115,6 +124,7 @@ class MovementManager {
     }
     
     func stop() {
+        print("Stop")
         isMoving = false
         if isTesting {
             DirectionSequence.shared.content.append(DirectionSequence.ActionType.Stop.rawValue)

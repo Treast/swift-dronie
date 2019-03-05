@@ -26,6 +26,7 @@
 		26732D3A22101E2F00931D41 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D3122101E2F00931D41 /* Movement.swift */; };
 		26732D3B22101E2F00931D41 /* GimbalDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D3222101E2F00931D41 /* GimbalDirection.swift */; };
 		26732D3C22101E2F00931D41 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26732D3322101E2F00931D41 /* Action.swift */; };
+		267B56B8222F24C700ED922A /* ControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B56B7222F24C700ED922A /* ControlViewController.swift */; };
 		268BFA4F22101EBE00C98CC3 /* parcours.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BFA4E22101EBE00C98CC3 /* parcours.json */; };
 		268BFA5122101F1600C98CC3 /* Parcours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BFA5022101F1600C98CC3 /* Parcours.swift */; };
 		268BFA5322101F6700C98CC3 /* ParcoursManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BFA5222101F6700C98CC3 /* ParcoursManager.swift */; };
@@ -121,6 +122,7 @@
 		26732D3122101E2F00931D41 /* Movement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		26732D3222101E2F00931D41 /* GimbalDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GimbalDirection.swift; sourceTree = "<group>"; };
 		26732D3322101E2F00931D41 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		267B56B7222F24C700ED922A /* ControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlViewController.swift; sourceTree = "<group>"; };
 		268BFA4E22101EBE00C98CC3 /* parcours.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parcours.json; sourceTree = "<group>"; };
 		268BFA5022101F1600C98CC3 /* Parcours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parcours.swift; sourceTree = "<group>"; };
 		268BFA5222101F6700C98CC3 /* ParcoursManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParcoursManager.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				6763AC262213470F00FE7FF4 /* Views */,
 				26732D1422101BB200931D41 /* AppDelegate.swift */,
 				26732D1622101BB200931D41 /* ConnectionViewController.swift */,
+				267B56B7222F24C700ED922A /* ControlViewController.swift */,
 				6763AC292213482200FE7FF4 /* CameraViewController.swift */,
 				26918810221AB5E90038C2D3 /* EventViewController.swift */,
 				26732D2622101DD000931D41 /* TestingViewController.swift */,
@@ -490,6 +493,7 @@
 				26732D1522101BB200931D41 /* AppDelegate.swift in Sources */,
 				268BFA5122101F1600C98CC3 /* Parcours.swift in Sources */,
 				26732D3B22101E2F00931D41 /* GimbalDirection.swift in Sources */,
+				267B56B8222F24C700ED922A /* ControlViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

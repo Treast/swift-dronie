@@ -76,21 +76,31 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nvf-3O-Jim">
-                                <rect key="frame" x="0.0" y="139.5" width="320" height="379.5"/>
+                                <rect key="frame" x="0.0" y="139.5" width="320" height="339"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbY-06-DTT">
+                                <rect key="frame" x="0.0" y="478" width="320" height="30"/>
+                                <state key="normal" title="GO GO GO"/>
+                                <connections>
+                                    <action selector="goFrontAction:" destination="nJT-YS-awS" eventType="touchUpInside" id="DZJ-BX-ZR1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ev1-8s-7QV" firstAttribute="top" secondItem="2tm-5w-Ox4" secondAttribute="top" constant="34" id="2vf-iQ-tec"/>
+                            <constraint firstAttribute="trailing" secondItem="NbY-06-DTT" secondAttribute="trailing" id="CEq-Xq-qsk"/>
                             <constraint firstItem="Nvf-3O-Jim" firstAttribute="top" secondItem="ev1-8s-7QV" secondAttribute="bottom" constant="30" id="Q6Y-hm-K7I"/>
                             <constraint firstItem="Nvf-3O-Jim" firstAttribute="trailing" secondItem="2tm-5w-Ox4" secondAttribute="trailing" id="SJy-sU-LcS"/>
-                            <constraint firstItem="Nvf-3O-Jim" firstAttribute="bottom" secondItem="2tm-5w-Ox4" secondAttribute="bottom" id="UcK-yY-awS"/>
+                            <constraint firstAttribute="bottom" secondItem="NbY-06-DTT" secondAttribute="bottom" constant="60" id="ZV3-2y-otC"/>
+                            <constraint firstItem="NbY-06-DTT" firstAttribute="firstBaseline" secondItem="Nvf-3O-Jim" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="beq-uP-HBr"/>
                             <constraint firstItem="Nvf-3O-Jim" firstAttribute="leading" secondItem="2tm-5w-Ox4" secondAttribute="leading" id="hUF-9f-cy4"/>
                             <constraint firstItem="Nvf-3O-Jim" firstAttribute="firstBaseline" secondItem="ev1-8s-7QV" secondAttribute="baseline" constant="21" symbolType="layoutAnchor" id="kZr-es-RoK"/>
+                            <constraint firstItem="NbY-06-DTT" firstAttribute="leading" secondItem="iKq-uS-3O4" secondAttribute="leading" id="qze-A8-jWQ"/>
                             <constraint firstItem="ev1-8s-7QV" firstAttribute="centerX" secondItem="2tm-5w-Ox4" secondAttribute="centerX" id="zLz-ga-gDn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2tm-5w-Ox4"/>
@@ -260,10 +270,116 @@
             </objects>
             <point key="canvasLocation" x="2010" y="-338"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Control View Controller-->
+        <scene sceneID="aBR-vl-Rsc">
+            <objects>
+                <viewController id="V2I-uD-6lG" customClass="ControlViewController" customModule="SparkDronie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CCy-sH-07E">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Gsu-4U-P1g">
+                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndl-bk-MbJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        <state key="normal" title="Up"/>
+                                        <connections>
+                                            <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="gxG-4C-S5l"/>
+                                            <action selector="onUpButtonPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="njh-mQ-xrk"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cYb-mo-ubg">
+                                        <rect key="frame" x="0.0" y="100" width="320" height="99.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="279-co-aOC">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="99.5"/>
+                                                <state key="normal" title="Left"/>
+                                                <connections>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="Vq0-FT-M0t"/>
+                                                    <action selector="onLeftButtonPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="Dyu-bK-RFq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u65-pa-KaO">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="99.5"/>
+                                                <state key="normal" title="Right"/>
+                                                <connections>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="xDL-HL-wMD"/>
+                                                    <action selector="onRightButtonPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="eaW-7g-N8u"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcl-e2-z97">
+                                        <rect key="frame" x="0.0" y="199.5" width="320" height="100"/>
+                                        <state key="normal" title="Down"/>
+                                        <connections>
+                                            <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="RIT-wg-TO0"/>
+                                            <action selector="onDownButtonPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="o3R-K5-JPp"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rY6-z6-yGD">
+                                        <rect key="frame" x="0.0" y="299.5" width="320" height="99.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnE-2h-DoG">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="99.5"/>
+                                                <state key="normal" title="Front"/>
+                                                <connections>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="j20-gT-9Ig"/>
+                                                    <action selector="onFrontPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="qJF-Uc-YMV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1x-3F-AHb">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="99.5"/>
+                                                <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="onBackPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="om9-gp-ga7"/>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="dsf-fw-P3x"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ahm-el-It9">
+                                        <rect key="frame" x="0.0" y="399" width="320" height="100"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Iv-U1-Uah">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
+                                                <state key="normal" title="TakeOff"/>
+                                                <connections>
+                                                    <action selector="onTakeOffPressed:" destination="V2I-uD-6lG" eventType="touchUpInside" id="NfI-i3-Fme"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MUK-ZY-vSO">
+                                                <rect key="frame" x="160" y="0.0" width="160" height="100"/>
+                                                <state key="normal" title="Land"/>
+                                                <connections>
+                                                    <action selector="onLandPressed:" destination="V2I-uD-6lG" eventType="touchUpInside" id="QuD-MW-g83"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Gsu-4U-P1g" firstAttribute="leading" secondItem="5gg-HS-hVr" secondAttribute="leading" id="Cn5-fy-hq2"/>
+                            <constraint firstItem="5gg-HS-hVr" firstAttribute="bottom" secondItem="Gsu-4U-P1g" secondAttribute="bottom" id="DF1-i0-Cc0"/>
+                            <constraint firstItem="Gsu-4U-P1g" firstAttribute="top" secondItem="5gg-HS-hVr" secondAttribute="top" id="Iap-Jg-NPg"/>
+                            <constraint firstItem="5gg-HS-hVr" firstAttribute="trailing" secondItem="Gsu-4U-P1g" secondAttribute="trailing" id="eft-Si-V1D"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5gg-HS-hVr"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="09I-r9-sg4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lI4-ya-rk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="968" y="-688"/>
+        </scene>
+        <!--Controller-->
         <scene sceneID="dME-JM-Ib6">
             <objects>
-                <tabBarController id="Pr1-Kt-adh" sceneMemberID="viewController">
+                <tabBarController title="Controller" id="Pr1-Kt-adh" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fvc-jz-ShZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -273,6 +389,7 @@
                         <segue destination="jzr-46-tBQ" kind="relationship" relationship="viewControllers" id="BUb-pw-kJY"/>
                         <segue destination="Yq6-hd-IOs" kind="relationship" relationship="viewControllers" id="a49-h7-3xa"/>
                         <segue destination="YDV-7Q-M1e" kind="relationship" relationship="viewControllers" id="V9l-YM-LKU"/>
+                        <segue destination="V2I-uD-6lG" kind="relationship" relationship="viewControllers" id="K0F-fP-hUz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSy-xD-HQu" userLabel="First Responder" sceneMemberID="firstResponder"/>

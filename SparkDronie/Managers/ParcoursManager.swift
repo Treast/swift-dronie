@@ -16,8 +16,6 @@ class ParcoursManager {
     var currentParcoursLength: Float = 0.0
     var currentPoint: ParcoursPoint? = ParcoursPoint(x: 0, y: 0)
     var timer:Timer? = nil
-    var xFactor: Float = 0.8
-    var yFactor: Float = 0.8
     var isFirstMove = false
     
     static let shared: ParcoursManager = ParcoursManager()
@@ -77,7 +75,6 @@ class ParcoursManager {
     
     func executeParcours(_ callback: (() -> ())? = nil) {
         guard let parcours = currentParcours else { return }
-        
         if let distance = self.nextDistance(), let move = self.nextMove() {
             var timerInterval = currentParcoursDuration * distance / currentParcoursLength;
             if (isFirstMove) {
@@ -85,6 +82,7 @@ class ParcoursManager {
             }
             self.timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timerInterval), repeats: false) { (t) in
                 // Code exécuté après move.duration seconds
+
                 if self.currentParcours != nil {
                     self.isFirstMove = false
                     self.executeParcours(callback)
@@ -96,8 +94,8 @@ class ParcoursManager {
                         print("Moving angle: Angle: \(move * 180 / Float.pi) X: \(xDirection) Y: \(yDirection)")
                     } else {
                         if let mySpark = DJISDKManager.product() as? DJIAircraft {
-                            mySpark.mobileRemoteController?.rightStickHorizontal = xDirection * self.xFactor
-                            mySpark.mobileRemoteController?.leftStickVertical = yDirection * self.yFactor
+                            mySpark.mobileRemoteController?.rightStickHorizontal = xDirection
+                            mySpark.mobileRemoteController?.leftStickVertical = yDirection
                         }
                     }
                     
@@ -106,7 +104,6 @@ class ParcoursManager {
             }
         } else {
             if currentParcours != nil {
-                print("FUCKING SHIT\(currentParcoursDuration / Float(parcours.points.count))")
                 Timer.scheduledTimer(withTimeInterval: TimeInterval(currentParcoursDuration / Float(parcours.points.count - 1)), repeats: false) { (t) in
                     self.stop()
                     if let cb = callback {
