@@ -57,7 +57,7 @@ class MovementManager {
     
     func forceMove(move: Movement.Direction) {
         if let mySpark = DJISDKManager.product() as? DJIAircraft {
-            if self.isTesting {
+            if !self.isTesting {
                 mySpark.mobileRemoteController?.rightStickVertical = self.speedFactor * Float(move.value().z)
                 mySpark.mobileRemoteController?.rightStickHorizontal = self.speedFactor * Float(move.value().x)
                 mySpark.mobileRemoteController?.leftStickVertical = self.speedFactor * Float(move.value().y)

@@ -12,7 +12,7 @@ import UIKit
 class ControlViewController: UIViewController {
     
     func setSpeed() {
-        MovementManager.shared.setSpeed(speedX: 0.1, speedY: 0.1)
+        MovementManager.shared.setSpeed(speedX: 0.2, speedY: 0.3)
     }
 
     
