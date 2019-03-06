@@ -68,15 +68,18 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let x = data["x2"],
             let y = data["y2"],
             let c = data["c"]{
-            MovementManager.shared.setSpeed(speedX: 0.7, speedY: 0.6)
-            print("Duration: \( 3.5 * Float(c))")
+            self.setSpeed()
             ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
-            MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3.5 * Float(c)) {
+            MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3 * Float(c)) {
                 callback()
             }
             
             //SocketIOManager.shared.emit(event: .MoveToButton,data: [["x": -Float(x), "y": -Float(y)]])
         }
+    }
+    
+    func setSpeed() {
+        MovementManager.shared.setSpeed(speedX: 0.7, speedY: 0.8)
     }
     
     func onSlide(dataArray:[Any], _ callback : @escaping () -> Void) {
@@ -88,7 +91,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             let x = data["x2"],
             let y = data["y2"],
             let c = data["c"]{
-            MovementManager.shared.setSpeed(speedX: 0.5, speedY: 0.3)
+            self.setSpeed()
             print("Duration: \( 3.5 * Float(c))")
             ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
             MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3.5 * Float(c)) {
@@ -108,7 +111,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             MovementManager.shared.setSpeed(speedX: 0.7, speedY: 0.6)
             print("Duration: \( 3.5 * Float(c))")
             ParcoursManager.shared.currentPoint = ParcoursPoint(x: Float(ox), y: Float(oy))
-            MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3.5 * Float(c)) {
+            MovementManager.shared.moveTo(x: Float(x), y: Float(y), duration: 3 * Float(c)) {
                 callback()
             }
             

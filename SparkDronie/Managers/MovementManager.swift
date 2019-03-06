@@ -32,7 +32,7 @@ class MovementManager {
         movements.append(movement)
     }
     
-    func moveTo(x:Float, y:Float,duration:Float = 3.5, _ callback: (() -> ())? = nil) {
+    func moveTo(x:Float, y:Float, duration:Float = 3.5, _ callback: (() -> ())? = nil) {
         
         //ParcoursManager.shared.currentPoint = ParcoursPoint(x:0,y:0)
         
@@ -41,8 +41,8 @@ class MovementManager {
             print("MOVE TO x:\(x) y:\(y) FROM \(currentPoint)")
             ParcoursManager.shared.setParcours(parcours: Parcours(
                 points: [
-                    ParcoursPoint(x: currentPoint.x, y: currentPoint.y), //where we are atm
-                    ParcoursPoint(x: x, y: y) //where we want to go
+                    ParcoursPoint(x: currentPoint.x, y: -1 * currentPoint.y), //where we are atm
+                    ParcoursPoint(x: x, y: -1 * y) //where we want to go
                 ])
             )
             
@@ -60,7 +60,7 @@ class MovementManager {
             if !self.isTesting {
                 mySpark.mobileRemoteController?.rightStickVertical = self.speedFactor * Float(move.value().z)
                 mySpark.mobileRemoteController?.rightStickHorizontal = self.speedFactor * Float(move.value().x)
-                mySpark.mobileRemoteController?.leftStickVertical = self.speedFactor * Float(move.value().y)
+                mySpark.mobileRemoteController?.leftStickVertical = self.speedFactorY * Float(move.value().y)
                 mySpark.mobileRemoteController?.leftStickHorizontal = self.rotationFactor * Float(move.value().w)
             } else {
                 print(move)
@@ -196,7 +196,7 @@ class MovementManager {
                     if let mySpark = DJISDKManager.product() as? DJIAircraft {
                         mySpark.mobileRemoteController?.rightStickVertical = self.speedFactor * Float(move.direction.value().z)
                         mySpark.mobileRemoteController?.rightStickHorizontal = self.speedFactor * Float(move.direction.value().x)
-                        mySpark.mobileRemoteController?.leftStickVertical = self.speedFactor * Float(move.direction.value().y)
+                        mySpark.mobileRemoteController?.leftStickVertical = self.speedFactorY * Float(move.direction.value().y)
                         mySpark.mobileRemoteController?.leftStickHorizontal = self.rotationFactor * Float(move.direction.value().w)
                     }
                 }

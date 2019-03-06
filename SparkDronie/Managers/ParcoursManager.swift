@@ -75,6 +75,7 @@ class ParcoursManager {
     
     func executeParcours(_ callback: (() -> ())? = nil) {
         guard let parcours = currentParcours else { return }
+        let yFactor: Float = 1.7 // Si le drone descend, on va plus vite
         if let distance = self.nextDistance(), let move = self.nextMove() {
             var timerInterval = currentParcoursDuration * distance / currentParcoursLength;
             if (isFirstMove) {
@@ -87,8 +88,12 @@ class ParcoursManager {
                     self.isFirstMove = false
                     self.executeParcours(callback)
                     
-                    let xDirection = MovementManager.shared.speedFactor * cos(move)
-                    let yDirection = MovementManager.shared.speedFactorY * sin(move)
+                    var xDirection = MovementManager.shared.speedFactor * cos(move)
+                    var yDirection = MovementManager.shared.speedFactorY * sin(move)
+                    
+                    if yDirection < 0 {
+                        yDirection *= yFactor
+                    }
                     
                     if MovementManager.shared.isTesting {
                         print("Moving angle: Angle: \(move * 180 / Float.pi) X: \(xDirection) Y: \(yDirection)")
