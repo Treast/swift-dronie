@@ -13,6 +13,7 @@ class ControlViewController: UIViewController {
     
     func setSpeed() {
         MovementManager.shared.setSpeed(speedX: 0.2, speedY: 0.3)
+        MovementManager.shared.rotationFactor = 0.5
     }
 
     
@@ -57,6 +58,16 @@ class ControlViewController: UIViewController {
     @IBAction func onTakeOffPressed(_ sender: Any) {
         MovementManager.shared.stop()
         MovementManager.shared.takeOff()
+    }
+    
+    @IBAction func onTurnRightPressed(_ sender: Any) {
+        self.setSpeed()
+        MovementManager.shared.forceMove(move: .RotateRight)
+    }
+    
+    @IBAction func onTurnLeftPressed(_ sender: Any) {
+        self.setSpeed()
+        MovementManager.shared.forceMove(move: .RotateLeft)
     }
     
     @IBAction func onLandPressed(_ sender: Any) {

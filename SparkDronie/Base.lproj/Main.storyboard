@@ -310,14 +310,35 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcl-e2-z97">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Q6x-Lq-UwA">
                                         <rect key="frame" x="0.0" y="199.5" width="320" height="100"/>
-                                        <state key="normal" title="Down"/>
-                                        <connections>
-                                            <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="RIT-wg-TO0"/>
-                                            <action selector="onDownButtonPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="o3R-K5-JPp"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Dm-ej-Jqp">
+                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="100"/>
+                                                <state key="normal" title="Turn Left"/>
+                                                <connections>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="ggG-jS-jxa"/>
+                                                    <action selector="onTurnLeftPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="lux-0e-x2P"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcl-e2-z97">
+                                                <rect key="frame" x="106.5" y="0.0" width="107" height="100"/>
+                                                <state key="normal" title="Down"/>
+                                                <connections>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="RIT-wg-TO0"/>
+                                                    <action selector="onDownButtonPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="o3R-K5-JPp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WiD-Ar-wo2">
+                                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="100"/>
+                                                <state key="normal" title="Turn Right"/>
+                                                <connections>
+                                                    <action selector="onButtonReleased:" destination="V2I-uD-6lG" eventType="touchUpInside" id="CEQ-sC-FRg"/>
+                                                    <action selector="onTurnRightPressed:" destination="V2I-uD-6lG" eventType="touchDown" id="8DK-Q7-kWE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rY6-z6-yGD">
                                         <rect key="frame" x="0.0" y="299.5" width="320" height="99.5"/>
                                         <subviews>
